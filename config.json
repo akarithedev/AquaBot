@@ -1,0 +1,8 @@
+{
+    "token": "",
+    "prefix": "a/",
+    "owner": ["852764428424314890", "872945920365432883"],
+    "nodes": [{
+        "host": "lava.link", "port": 80, "password": "youshallnotpass", "identifier": "AquaMusic"
+    }]
+}

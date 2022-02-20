@@ -1,0 +1,36 @@
+{
+  "name": "aqua-network",
+  "version": "1.0.0",
+  "description": "A bot for aqua-network community",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo Triassic is the best",
+    "start": "node ."
+  },
+  "author": "Sweetie",
+  "license": "MIT",
+  "dependencies": {
+    "ascii-table": "0.0.9",
+    "axios": "^0.21.1",
+    "beautify": "0.0.8",
+    "discord-reply": "^0.1.2",
+    "discord.js": "^12.5.3",
+    "dotenv": "^10.0.0",
+    "erela.js": "^2.3.3",
+    "fs": "0.0.1-security",
+    "glob": "^7.1.7",
+    "http": "0.0.1-security",
+    "moment": "^2.29.1",
+    "mpath": "^0.8.4",
+    "ms": "^2.1.3",
+    "node-fetch": "^2.6.1",
+    "nodemon": "^2.0.12",
+    "parse-ms": "^2.1.0",
+    "pm2": "^5.1.1",
+    "quickmongo": "^3.0.2",
+    "util": "^0.12.4"
+  },
+  "engines": {
+    "node": "13.x"
+  }
+}
