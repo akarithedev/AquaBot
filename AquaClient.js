@@ -1,12 +1,4 @@
 
-var http = require('http');
-
-http.createServer(function (req, res) {
-  res.write("I'm alive");
-  res.end();
-}).listen(8080);
-
-
 const discord = require("discord.js");
 const Intents = discord.Intents;
 const bot = new discord.Client({intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_VOICE_STATES], properties: { $browser: "Discord Android" }})
