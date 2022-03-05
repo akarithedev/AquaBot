@@ -1,5 +1,4 @@
 const discord = require("discord.js")
-const ms = require("parse-ms")
 let embed = new discord.MessageEmbed()
 
 module.exports = {
@@ -8,18 +7,19 @@ module.exports = {
     aliases: ["botup"],
     category: "info",
     run: async(bot, message, args) => {
-        let days = ms(bot.uptime).days
-        let hours = ms(bot.uptime).hours
-        let minutes = ms(bot.uptime).minutes
-        let seconds = ms(bot.uptime).seconds
+        
+        function duration(ms) {
+			const sec = Math.floor((ms/ 1000) % 60).toString()
+			const min = Math.floor((ms/ (1000 * 60)) % 60).toString()
+			const hrs = Math.floor((ms / (1000 * 60 * 60)) % 60).toString()
+			const days = Math.floor((ms / (1000 * 60 * 60 * 24)) % 60).toString()
+            return `${days.padStart(1, '0')} days, ${hrs.padStart(2, '0')} hours, ${min.padStart(2, '0')} minutes, ${sec.padStart(2, '0')} seconds`
+		}
 
         embed.setTitle("My uptime")
-        embed.addField("Days(s)", `\`\`\`${days}\`\`\``)
-        embed.addField("Hour(s)", `\`\`\`${hours}\`\`\``)
-        embed.addField("Minute(s)", `\`\`\`${minutes}\`\`\``)
-        embed.addField("Second(s)", `\`\`\`${seconds}\`\`\``)
+        embed.setDescription(`\`\`\`${duration(bot.uptime)}\`\`\``)
         embed.setColor("BLUE")
         embed.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
-        return message.lineReply(embed)
+        message.reply({embeds: [embed]})
     }
 }

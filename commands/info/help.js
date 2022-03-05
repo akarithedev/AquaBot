@@ -27,7 +27,7 @@ module.exports = {
 				embed.addField(`${bot.utils.capitalise(category)}`, bot.commands.filter(cmd =>
 					cmd.category === category).map(cmd => `\`${cmd.name}\``).join(', '))
 			}
-			return message.lineReply(embed)
+			return message.reply({embeds: [embed]})
 
        } else {
 
@@ -37,7 +37,7 @@ module.exports = {
           .setDescription(`No command was found with this name/alias`)
           .setColor("RED")
           .setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
-          return message.lineReply(nocmd)
+          return message.reply({embeds: [nocmd]})
         }
          let cmdinfo = new discord.MessageEmbed()
          .setTitle(`${bot.user.username} Help`)
@@ -45,7 +45,7 @@ module.exports = {
          .setColor("BLUE")
          .setThumbnail(bot.user.displayAvatarURL({format: "png", size: 2048}))
          .setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
-        return message.lineReply(cmdinfo)
+        return message.reply({embeds: [cmdinfo]})
         }
     }
 }

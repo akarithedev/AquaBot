@@ -17,7 +17,7 @@ const { args, flags } = parseQuery(query);
           .setDescription("Please provide a value to evaluate")
           .setColor("BLUE")
           .setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
-          return message.lineReply(embed)
+          return message.reply({embeds: [embed]})
       }
       let code = args.join(" ");
       let depth = 0;
@@ -43,7 +43,7 @@ const { args, flags } = parseQuery(query);
           .setDescription(`**Input**\n\`\`\`js\n${args.join(" ")}\`\`\``)
           .addField('Output', evaled)
           .setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
-          await msg.lineReply(embed);
+          await msg.reply({embeds: [embed]});
      
        } catch (e) {
        let error;
@@ -54,7 +54,7 @@ const { args, flags } = parseQuery(query);
         .setDescription(error)
         .setColor("BLUE")
         .setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
-        await msg.lineReply(embed);
+        await msg.reply({embeds: [embed]});
     }
 
       async function parseEval(input) {

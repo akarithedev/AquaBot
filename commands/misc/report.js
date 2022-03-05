@@ -14,14 +14,14 @@ module.exports = {
             .setDescription("Please mention a user to report.")
             .setColor("RED")
             .setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
-            return message.lineReply(embed)
+            return message.reply({embeds: [embed]})
         }
         if(!reason) {
             let embed = new discord.MessageEmbed()
             .setDescription("Please provide a reason.")
             .setColor("RED")
             .setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
-            return message.lineReply(embed)
+            return message.reply({embeds: [embed]})
         }
 
         if(target && target.id !== message.guild.owner.id) {
@@ -36,7 +36,7 @@ module.exports = {
             embed2.setDescription(`**Target** ➜ \`${target.tag}\`\n**Reporter** ➜ \`${message.author.tag}\`\n**Reason** ➜ \`${reason}\`\n**Reported on** ➜ \`${moment(message.createdTimestamp).format('LT')} ${moment(message.createdTimestamp).format('LL')}\``)
             embed2.setColor("BLUE")
             await channel.send(embed2)
-           return message.lineReply(embed)
+           return message.reply({embeds: [embed]})
           } 
     }
 }

@@ -11,12 +11,12 @@ module.exports = {
             embed.setDescription(":x: You must provide some text")
             embed.setColor("BLUE")
             embed.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
-            return message.lineReply(embed)
+            return message.reply({embeds: [embed]})
         } else {
 			message.delete()
             embed.setDescription(args.join(" "))
             embed.setColor("BLUE")
-            return message.channel.send(embed)
+            return message.channel.send({embeds: [embed]})
         }
     }
 }

@@ -13,7 +13,7 @@ module.exports = {
             embed.setColor("BLUE")
             embed.setDescription("You need to be in a voice channel in order to play music.")
             embed.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
-            return message.lineReply(embed)
+            return message.reply({embeds: [embed]})
         }
 
         let songs;
@@ -23,7 +23,7 @@ module.exports = {
 
             let player = bot.music.create({
                 guild: message.guild.id,
-                voiceChannel: message.member.voice.channel.id,
+                voiceChannel: message.member.voice.channelId,
                 textChannel: message.channel.id,
                 volume: 100,
               });
@@ -32,21 +32,21 @@ module.exports = {
                   embed.setDescription("I'm being used in another voice channel.")
                   embed.setColor("BLUE")
                   embed.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
-                  return message.lineReply(embed)
+                  return message.reply({embeds: [embed]})
               }
 
               if(!songs) {
                   embed.setDescription("You need to provide a song name or a song url")
                   embed.setColor("BLUE")
                   embed.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
-                  return message.lineReply(embed)
+                  return message.reply({embeds: [embed]})
               }
 
               if(player.voiceChannel !== voiceChannel.id) {
                 embed.setDescription("I'm being used in another voice channel.")
                 embed.setColor("BLUE")
                 embed.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
-                return message.lineReply(embed)
+                return message.reply({embeds: [embed]})
             }
 
             if(player.state !== "CONNECTED") player.connect()
@@ -56,7 +56,7 @@ module.exports = {
                 embed.setDescription(`I couldn't found any song called: \`${songs}\``)
                 embed.setColor("BLUE")
                 embed.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
-                return message.lineReply(embed)
+                return message.reply({embeds: [embed]})
 
             }
 
@@ -67,20 +67,20 @@ module.exports = {
                 embed.setDescription(`Adding playlist \`${res.playlist.name}\` with \`${res.tracks.length}\` songs`)
                 embed.setColor("BLUE")
                 embed.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
-                return message.lineReply(embed)
+                return message.reply({embeds: [embed]})
             }
             player.queue.add(res.tracks[0]);
             if(player.queue.length !== 0) {
                 embed.setDescription(`Searching for \`${songs}\``)
                 embed.setColor("BLUE")
                 embed.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
-                let msg = await message.lineReply(embed)
+                let msg = await message.reply({embeds: [embed]})
 
                 setTimeout(() => {
                     embed.setDescription(`Successfully added \`${res.tracks[0].title}\` to the queue.`)
                     embed.setColor("BLUE")
                     embed.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
-                    return msg.edit(embed)
+                    return msg.edit({embeds: [embed]})
                 }, 5000)
             }
             if (!player.playing && !player.paused && !player.queue.size) player.play();
@@ -88,7 +88,7 @@ module.exports = {
             embed.setDescription(`ERROR: \`${e.message}\``)
             embed.setColor("BLUE")
             embed.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
-            return message.lineReply(embed)
+            return message.reply({embeds: [embed]})
         }
     }
 }

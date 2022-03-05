@@ -2,19 +2,21 @@ const discord = require("discord.js")
 const embed = new discord.MessageEmbed()
 
 module.exports = {
-    name: "stop",
-    description: "Cleares the queue",
+    name: "remove",
     category: "music",
-    aliases: ["leave", "disconnect"],
+    description: "removes a song from queue.",
+    aliases: ["unqueue", "rem"],
+    ownerOnly: false,
     run: async(bot, message, args) => {
         let voiceChannel = message.member.voice.channel;
+        let songnumber = args[0];
         let player = bot.music.players.get(message.guild.id);
 
+
         if(!voiceChannel) {
-            embed.setDescription("You need to be in a voice channel to use the stop command.")
+            embed.setDescription("You need to be in a voice channel to use the remove command.")
             embed.setColor("BLUE")
             embed.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
-
             return message.reply({embeds: [embed]})
         }
 
@@ -31,18 +33,27 @@ module.exports = {
             embed.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
             return message.reply({embeds: [embed]})
         }
-
-        if(!player) {
-            embed.setDescription("There is no song/s playing within this guild.")
+        if(!songnumber) {
+            embed.setDescription("You have to specify the song number.")
             embed.setColor("BLUE")
             embed.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
             return message.reply({embeds: [embed]})
         }
 
-        player.destroy();
-        embed.setDescription("The queue has been cleared and I left the voice channel.")
+        if(args[0] === "0") {
+        embed.setDescription(`You cannot remove the current song from the queue.`)
         embed.setColor("BLUE")
         embed.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
-        message.reply({embeds: [embed]})
+        return message.reply({embeds: [embed]})
+    }
+        const trackTitle = player.queue[songnumber - 1].title
+        const trackNumber = player.queue[songnumber -1];
+
+        player.queue.remove(trackNumber)
+        embed.setDescription(`Removed \`${trackTitle}\` from the queue.`)
+        embed.setColor("BLUE")
+        embed.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
+        return message.reply({embeds: [embed]})
+
     }
 }
