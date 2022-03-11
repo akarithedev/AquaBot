@@ -1,4 +1,4 @@
-const discord = require("discord.js");
+const discord = require("discord.js")
 const permission = "BAN_MEMBERS";
 const embed = new discord.MessageEmbed();
 
@@ -15,7 +15,7 @@ module.exports = {
         if(!message.member.permissions.has(permission)) {
             embed.setTitle("Missing Permissions")
             embed.setColor("RED")
-            embed.setDescription("You do not have the required permissions to use this command. You need `BAN_MEMBERS` permission")
+            embed.setDescription(`${bot.emoji.error} You do not have the required permissions to use this command. You need \`BAN_MEMBERS\` permission`)
             embed.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
 
             return message.reply({embeds: [embed]})
@@ -24,7 +24,7 @@ module.exports = {
 
         if(!target) {
             embed.setColor("RED")
-            embed.setDescription("Please mention or provide an user id for me to ban.")
+            embed.setDescription(`${bot.emoji.error} Please mention or provide an user id for me to ban.`)
             embed.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
 
             return message.reply({embeds: [embed]})
@@ -32,7 +32,7 @@ module.exports = {
 
         if(target.id === message.author.id) {
             let embed = new discord.MessageEmbed()
-            .setDescription("Haha funny, you cannot ban yourself :>")
+            .setDescription(`${bot.emoji.error} Haha funny, you cannot ban yourself :>`)
             .setColor("RED")
             .setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
             return message.reply({embeds: [embed]})
@@ -45,7 +45,7 @@ module.exports = {
        
         if(!targetUser.bannable) {
             embed.setColor("RED")
-            embed.setDescription("You cannot ban this user.")
+            embed.setDescription(`${bot.emoji.error} You cannot ban this user.`)
             embed.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
 
             return message.reply({embeds: [embed]})
@@ -54,7 +54,7 @@ module.exports = {
         if(target) {
             targetUser.ban({reason: reason})
             embed.setAuthor("User Banned", target.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
-            embed.setDescription(`The user \`${target.tag}\` has been successfully banned.`)
+            embed.setDescription(`${bot.emoji.success} The user \`${target.tag}\` has been successfully banned.`)
             embed.setColor("BLUE")
             embed.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
            return message.reply({embeds: [embed]})

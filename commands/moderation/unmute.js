@@ -12,37 +12,47 @@ module.exports = {
         if(!permission) {
             let embed = new discord.MessageEmbed()
             .setTitle("Missing Permissions")
-            .setDescription("You do not have the required permissions to use this command. You need `MANAGE_ROLES` permission")
+            .setDescription(`${bot.emoji.error} You do not have the required permissions to use this command. You need \`MANAGE_ROLES\` permission`)
             .setColor("RED")
             .setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
             return message.reply({embeds: [embed]})
         }
-
-        let target = message.mentions.users.first() || await bot.users.fetch(args[0])
+        const target = message.mentions.users.first() || await bot.users.fetch(args[0])
         if(!target) {
+            embed.setColor("RED")
+            embed.setDescription(`${bot.emoji.error} Please mention or provide an user id to unmute.`)
+            embed.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
+
+            return message.reply({embeds: [embed]})
+        }
+
+        if(target.id === message.author.id) {
             let embed = new discord.MessageEmbed()
-            .setDescription("Please mention or provide a member id")
+            .setDescription(`${bot.emoji.error} You are already unmuted :>`)
             .setColor("RED")
             .setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
             return message.reply({embeds: [embed]})
         }
 
-const targetuser = message.guild.members.cache.get(target.id) || await message.guild.members.fetch(target.id);
+
+const targetuser = message.guild.members.cache.get(target.id) || await message.guild.members.fetch(target.id);        
+        if(!reason) {
+            reason = "No reason"
+        }
         let muterole = message.guild.roles.cache.find(role => role.name === mutedrole);
         if(!muterole) {
             let embed = new discord.MessageEmbed()
                 .setColor("RED")
-                .setDescription("The muted role is missing. Are you sure that the role exists on the server? if not, simply create one named `Muted`")
+                .setDescription(`${bot.emoji.error} The muted role is missing. Are you sure that the role exists on the server? if not, simply create one named \`Muted\``)
                 .setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
               return message.reply({embeds: [embed]})
             
         }
 
 
-
-  if(!targetuser.roles.cache.some(role => role.name === mutedrole)) {
+  if(targetuser.roles.cache.some(role => role.name !== mutedrole)) {
       let embed = new discord.MessageEmbed()
-      .setDescription("The member is not muted")
+      .setDescription(`${bot.emoji.error} The member is already unmuted`)
       .setColor("RED")
       .setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
         return message.reply({embeds: [embed]})
@@ -51,7 +61,7 @@ const targetuser = message.guild.members.cache.get(target.id) || await message.g
 if(target) {
   let embed = new discord.MessageEmbed()
   .setAuthor("Unmuted", target.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
-  .setDescription(`The user \`${target.tag}\` has been successfully unmuted.`)
+  .setDescription(`${bot.emoji.success} The user \`${target.tag}\` has been successfully unmuted.`)
   .setColor("BLUE")
   .setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
   message.reply({embeds: [embed]})

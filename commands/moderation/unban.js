@@ -10,26 +10,27 @@ module.exports = {
     usage: "unban <user>",
     run: async(bot, message, args) => {
 
-        if(!message.member.permissions.has(permission)) {
-            embed.setTitle("Missing Permissions")
-            embed.setColor("RED")
-            embed.setDescription("You do not have the required permissions to use this command. You need `BAN_MEMBERS` permission")
-            embed.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
+      if(!message.member.permissions.has(permission)) {
+        embed.setTitle("Missing Permissions")
+        embed.setColor("RED")
+        embed.setDescription(`${bot.emoji.error} You do not have the required permissions to use this command. You need \`BAN_MEMBERS\` permission`)
+        embed.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
 
-            return message.reply({embeds: [embed]})
-    
-        }
-       if(!args[0]) {
-            embed.setColor("RED")
-            embed.setDescription("Please provide an id for me to unban")
-            embed.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
+        return message.reply({embeds: [embed]})
 
-            return message.reply({embeds: [embed]})
-       }
+    }
+
+    if(!args[0]) {
+        embed.setColor("RED")
+        embed.setDescription(`${bot.emoji.error} Please provide an user id`)
+        embed.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
+
+        return message.reply({embeds: [embed]})
+    }
       
         if (isNaN(args[0])) {
-                      embed.setColor("RED")
-            embed.setDescription("Invalid identifier")
+            embed.setColor("RED")
+            embed.setDescription(`${bot.emoji.error} Invalid identifier`)
             embed.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
 
             return message.reply({embeds: [embed]})
@@ -46,13 +47,13 @@ module.exports = {
     try {
       message.guild.members.unban(targetUser.user.id)
     } catch(err) {
-        embed.setDescription(`An error occured: \`${err.message}\``)
+        embed.setDescription(`${bot.emoji.error} The user couldn't be found`)
         embed.setColor("RED")
         embed.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
        return message.reply({embeds: [embed]})
     }
     embed.setAuthor("User Unbanned", targetUser.user.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
-            embed.setDescription(`The user \`${targetUser.user.tag}\` has been successfully unbanned.`)
+            embed.setDescription(`${bot.emoji.success} The user \`${targetUser.user.tag}\` has been successfully unbanned.`)
             embed.setColor("BLUE")
             embed.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
            return message.reply({embeds: [embed]})

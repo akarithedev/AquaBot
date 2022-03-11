@@ -4,14 +4,9 @@ module.exports = {
     name: "google",
     description: "a normal misc command for bored moments",
     category: "misc",
-    ownerOnly: false,
+    ownerOnly: true,
     run: async(bot, message, args) => {
         let embed = new discord.MessageEmbed()
-        
-        embed.setDescription("This command is disabled at the moment.")
-        embed.setColor("RED")
-        embed.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
-        message.reply({embeds: [embed]})
         
         if(!args.length) {
             embed.setDescription("Please provide an url to catch screenshot of")

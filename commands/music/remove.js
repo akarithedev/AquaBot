@@ -14,43 +14,44 @@ module.exports = {
 
 
         if(!voiceChannel) {
-            embed.setDescription("You need to be in a voice channel to use the remove command.")
+            embed.setDescription(`${bot.emoji.error} You need to be in a voice channel to use the remove command.`)
             embed.setColor("BLUE")
             embed.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
             return message.reply({embeds: [embed]})
         }
 
         if(!player) {
-            embed.setDescription("There is no song/s playing within this guild.")
+            embed.setDescription(`${bot.emoji.error} There is no song/s playing within this guild.`)
             embed.setColor("BLUE")
             embed.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
             return message.reply({embeds: [embed]})
         }
          
         if(player.voiceChannel !== voiceChannel.id) {
-            embed.setDescription("I'm being used in another voice channel.")
+            embed.setDescription(`${bot.emoji.error} I'm being used in another voice channel.`)
             embed.setColor("BLUE")
             embed.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
             return message.reply({embeds: [embed]})
         }
-        if(!songnumber) {
-            embed.setDescription("You have to specify the song number.")
+
+        if(!player) {
+            embed.setDescription(`${bot.emoji.error} There is no song/s playing within this guild.`)
             embed.setColor("BLUE")
             embed.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
             return message.reply({embeds: [embed]})
         }
 
         if(args[0] === "0") {
-        embed.setDescription(`You cannot remove the current song from the queue.`)
+        embed.setDescription(`${bot.emoji.error} You cannot remove the current song from the queue.`)
         embed.setColor("BLUE")
         embed.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
         return message.reply({embeds: [embed]})
     }
         const trackTitle = player.queue[songnumber - 1].title
-        const trackNumber = player.queue[songnumber -1];
+        const trackNumber = [songnumber -1];
 
         player.queue.remove(trackNumber)
-        embed.setDescription(`Removed \`${trackTitle}\` from the queue.`)
+        embed.setDescription(`${bot.emoji.success} Removed \`${trackTitle}\` from the queue.`)
         embed.setColor("BLUE")
         embed.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
         return message.reply({embeds: [embed]})
