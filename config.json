@@ -3,6 +3,6 @@
     "prefix": "a/",
     "owner": ["852764428424314890", "872945920365432883"],
     "nodes": [{
-        "host": "lavalink-repl.anamaria72.repl.co", "port": 443, "password": "youshallnotpass", "identifier": "AquaMusic", "secure": true
+        "host": "lava.link", "port": 80, "password": "youshallnotpass", "identifier": "AquaMusic"
     }]
 }
