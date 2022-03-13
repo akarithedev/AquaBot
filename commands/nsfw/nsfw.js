@@ -12,7 +12,6 @@ module.exports = {
 		let types = [
 			'hentai',
 			'pussy',
-			'nekoGif',
 			'neko',
 			'lesbian',
 			'kuni',

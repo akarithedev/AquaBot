@@ -8,20 +8,17 @@ module.exports = {
 	async pussy() {
 		return await this.request('pussy');
 	},
-	async nekoGif() {
-		return await this.request('nsfw_neko_gif');
-	},
 	async neko() {
-		return await this.request('lewd');
+		return await this.request('nekoGif');	
 	},
 	async lesbian() {
-		return await this.request('les');
+		return await this.request('lesbian');
 	},
 	async kuni() {
 		return await this.request('kuni');
 	},
 	async cumsluts() {
-		return await this.request('cum');
+		return await this.request('cumsluts');
 	},
 	async classic() {
 		return await this.request('classic');
@@ -30,7 +27,7 @@ module.exports = {
 		return await this.request('boobs');
 	},
 	async blowjob() {
-		return await this.request('bJ');
+		return await this.request('blowJob');
 	},
 	async yuri() {
 		return await this.request('yuri');
@@ -39,10 +36,10 @@ module.exports = {
 		return await this.request('tits');
 	},
 	async solo() {
-		return await this.request('solog');
+		return await this.request('girlSoloGif');
 	},
 	async feet() {
-		return await this.request('feetg');
+		return await this.request('feetGif');
 	},
 	async request(type) {
 		return await axios({
