@@ -19,7 +19,7 @@ module.exports.run = async(bot, message) => {
         .setTitle("Command Error")
         .setDescription(`${bot.emoji.error} This command does not exist`)
         .setColor("RED")
-        console.log(`User ${message.author.tag} tried to use a non existent command (${command})`)
+        console.log(`User ${message.author.tag} tried to use a non existent command (${cmd})`)
         return message.reply({ embeds: [embed] })
     }
     if (command.ownerOnly) {
@@ -28,7 +28,7 @@ module.exports.run = async(bot, message) => {
             .setTitle("Command Error")
             .setDescription(`${bot.emoji.error} You do not have permission to use this command.`)
             .setColor("RED")
-            console.log(`User ${message.author.tag} tried to use a restricted command (${command})`)
+            console.log(`User ${message.author.tag} tried to use a restricted command (${cmd})`)
             return message.reply({ embeds: [embed2] })
         }
     }
