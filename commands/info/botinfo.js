@@ -23,7 +23,7 @@ module.exports = {
             `Text Channels: \`${textChannels}\``,
             `Voice Channels: \`${voiceChannels}\``,
             `Stage Channels: \`${stageChannels}\``,
-            `**Users**: \`${users}\``
+            `**Users**: \`${users}\``,
             `**Versions**:`,
             `DiscordJs Version: \`${discord.Version}\``,
             `Bot Version: \`${version}\``,
