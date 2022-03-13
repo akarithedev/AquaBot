@@ -18,6 +18,7 @@ module.exports = {
 
         let array = [
             `**Bot Developers**: \`${developers.filter(u => u.tag).join(", ")}\``,
+            `**Bot Creation**: \`${bot.user.createdAt.toUTCString()}\``,
             `**Channels**:`,
             `Text Channels: \`${textChannels}\``,
             `Voice Channels: \`${voiceChannels}\``,
