@@ -43,9 +43,9 @@ module.exports = {
             const sec = Math.floor((ms / 1000) % 60).toString()
             const min = Math.floor((ms / (1000 * 60)) % 60).toString()
             const hrs = Math.floor((ms / (1000 * 60 * 60)) % 60).toString()
-            return `${hrs.padStart(1, '0')}:${min.padStart(2, '0')}:${sec.padStart(2, '0')}`
+            return `${hrs.padStart(2, '0')}:${min.padStart(2, '0')}:${sec.padStart(2, '0')}`
         }
-        embed.setAuthor("Current Song Playing", message.guild.iconURL({format: "png", dynamic: true, size: 2048}))
+        embed.setTitle("Current Song Playing")
         embed.setColor("BLUE")
         let array = [
             `**Title**: \`${current.title}\``,
