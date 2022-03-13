@@ -27,6 +27,15 @@ module.exports = {
 				embed.addField(`${bot.utils.capitalise(category)}`, bot.commands.filter(cmd =>
 					cmd.category === category).map(cmd => `\`${cmd.name}\``).join(', '))
 			}
+      if(!message.channel.nsfw) {
+				categories = bot.utils.removeDuplicates(bot.commands.filter(cmd => cmd.category !== 'nsfw').map(cmd => cmd.category));
+			} else {
+				categories = bot.utils.removeDuplicates(bot.commands.map(cmd => cmd.category));
+			}
+			for (const category of categories) {
+				embed.addField(`${bot.utils.capitalise(category)}`, bot.commands.filter(cmd =>
+					cmd.category === category).map(cmd => `\`${cmd.name}\``).join(', '))
+			}
 			return message.reply({embeds: [embed]})
 
        } else {
