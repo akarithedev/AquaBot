@@ -9,12 +9,12 @@ table.setHeading("Event", "Status");
 
 module.exports = (client) => {
 
-  const events = readdirSync(`./events/`).filter(file => file.endsWith(".js"));
+  const events = readdirSync(`./events/discord/`).filter(file => file.endsWith(".js"));
 
   for (let file of events) {
 
     try {
-    let pull = require(`../events/${file}`);
+    let pull = require(`../events/discord/${file}`);
 
     if (pull.event) {
       table.addRow(file, `❌ -> Property event should be string.`);
