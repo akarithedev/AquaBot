@@ -12,7 +12,7 @@ module.exports = {
     run: async(bot, message, args) => {
         let textChannels = bot.channels.cache.filter(c => c.type === "GUILD_TEXT").size;
         let voiceChannels = bot.channels.cache.filter(c => c.type === "GUILD_VOICE").size;
-        let stageChannels = bot.channels.cache.filter(c => c.type === "GUILD_STAGE").size;
+        let stageChannels = bot.channels.cache.filter(c => c.type === "GUILD_VOICE_STAGE").size;
         let users = bot.users.cache.filter(u => !u.bot).size;
         let developers = bot.devs.map(a => bot.users.cache.get(a))
 
