@@ -14,7 +14,7 @@ module.exports = {
         let voiceChannels = bot.channels.cache.filter(c => c.type === "GUILD_VOICE").size;
         let stageChannels = bot.channels.cache.filter(c => c.type === "GUILD_STAGE").size;
         let users = bot.users.cache.filter(u => !u.bot).size;
-        let developers = bot.users.cache.get(bot.devs);
+        let developers = bot.devs.map(a => bot.users.cache.get(a))
 
         let array = [
             `**Bot Developers**: \`${developers.filter(u => u.tag).join(", ")}\``,
