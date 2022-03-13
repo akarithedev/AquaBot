@@ -32,5 +32,14 @@ module.exports.run = async(bot, message) => {
             return message.reply({ embeds: [embed2] })
         }
     }
+    if(command.nsfwOnly) {
+        if(!message.channel.nsfw) {
+                      const embed3 = new discord.MessageEmbed()
+                .setTitle("Command Error")
+                .setDescription(`${bot.emoji.error} This command can be used only in nsfw channels`)
+                .setColor("RED")
+                return message.reply({ embeds: [embed3] })
+        }
+      }
     if (command) command.run(bot, message, args)
 }
