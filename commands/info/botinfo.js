@@ -32,6 +32,7 @@ module.exports = {
         bot.embed.setAuthor("Bot Information")
         .setThumbnail(bot.user.displayAvatarURL({format: "png", size: 4096}))
         .setColor("BLUE")
+        .setDescription(array.join("\n"))
         .setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
 
         message.reply({embeds: [bot.embed]})
