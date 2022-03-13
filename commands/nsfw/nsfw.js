@@ -10,12 +10,25 @@ module.exports = {
   nsfwOnly: true,
 	run: async (bot, message, args) => {
 		let types = [
-			'hentai'
+			'hentai',
+			'pussy',
+			'nekoGif',
+			'neko',
+			'lesbian',
+			'kuni',
+			'cumsluts',
+			'boobs',
+			'classic',
+			'blowjob',
+			'yuri',
+			'tits',
+			'solo',
+			'feet'
 		]
 		if(!args[0]) {
 			let embed = new discord.MessageEmbed()
 				.setTitle('No type provided')
-				.setDescription('Availale types: `'+types.join(', ')+'`')
+				.setDescription(`${bot.emoji.error} You must provide a type of nsfw. Available types: \`${types.join(', ')}\``)
 				.setColor('RED')
 				.setTimestamp();
 			message.reply({embeds:[embed]});
@@ -25,16 +38,16 @@ module.exports = {
 		if(!types.includes(type)) {
 			let embed = new discord.MessageEmbed()
 				.setTitle('Invalid type provided')
-				.setDescription('Availale types: `'+types.join(', ')+'`')
+				.setDescription(`${bot.emoji.error} The type you provided is invalid. Available types: \`${types.join(', ')}\``)
 				.setColor('RED')
 				.setTimestamp();
 			message.reply({embeds:[embed]});
 			return;
 		}
-		let { url } = Nsfw[type]();
+		let data = await Nsfw[type]();
 		let embed = new discord.MessageEmbed()
 			.setTitle('Here\'s your nsfw image!')
-			.setImage(url)
+			.setImage(data)
 			.setColor('GREEN')
 			.setTimestamp();
 		message.reply({embeds:[embed]});
