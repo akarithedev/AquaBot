@@ -25,7 +25,7 @@ module.exports = {
             `Stage Channels: \`${stageChannels}\``,
             `**Users**: \`${users}\``,
             `**Versions**:`,
-            `DiscordJs Version: \`${discord.Version}\``,
+            `DiscordJs Version: \`${discord.version}\``,
             `Bot Version: \`${version}\``,
             `NodeJs Version: \`${process.version}\``
         ]
