@@ -1,9 +1,11 @@
-var http = require('http');
+var express = require('express');
+var app = express();
 
-http.createServer(function (req, res) {
-    res.write("I'm alive");
-    res.end();
-}).listen();
+app.get('/', (req, res) => {
+	res.send('I\'m alive');
+})
+
+app.listen(process.env.PORT | 8080);
 
 const discord = require("discord.js");
 const bot = new discord.Client({ intents: 32767, ws: { properties: { $browser: "Discord Android" } }});
