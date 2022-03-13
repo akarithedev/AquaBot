@@ -1,5 +1,5 @@
 const axios = require('axios');
-let base = 'https://nekos.life/api/v2/';
+let base = 'http://nekos.life/api/v2/';
 
 module.exports = {
 	hentai() {
