@@ -29,7 +29,7 @@ module.exports = {
 				.setTitle('No type provided')
 				.setDescription(`${bot.emoji.error} You must provide a type of nsfw. Available types: \`${types.join(', ')}\``)
 				.setColor('RED')
-				.setTimestamp();
+			    .setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({ format: "png", dynamic: true, size: 2048 }))
 			message.reply({embeds:[embed]});
 			return; 
 		}
@@ -39,7 +39,7 @@ module.exports = {
 				.setTitle('Invalid type provided')
 				.setDescription(`${bot.emoji.error} The type you provided is invalid. Available types: \`${types.join(', ')}\``)
 				.setColor('RED')
-				.setTimestamp();
+			    .setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({ format: "png", dynamic: true, size: 2048 }))
 			message.reply({embeds:[embed]});
 			return;
 		}
@@ -48,7 +48,7 @@ module.exports = {
 			.setTitle('Here\'s your nsfw image!')
 			.setImage(data)
 			.setColor('GREEN')
-			.setTimestamp();
-		message.reply({embeds:[embed]});
+			.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({ format: "png", dynamic: true, size: 2048 }))
+			message.reply({embeds:[embed]});
 	}
 }
