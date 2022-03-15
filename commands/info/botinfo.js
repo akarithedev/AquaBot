@@ -24,6 +24,7 @@ module.exports = {
             `Voice Channels: \`${voiceChannels}\``,
             `Stage Channels: \`${stageChannels}\``,
             `**Users**: \`${users}\``,
+            `**Voice Connections**: \`${bot.voice.adapters.size}\``,
             `**Versions**:`,
             `DiscordJs Version: \`${discord.version}\``,
             `Bot Version: \`${version}\``,
