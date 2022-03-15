@@ -2,7 +2,7 @@ const discord = require("discord.js")
 
 module.exports = {
     name: "howgay",
-    category: "misc",
+    category: "fun",
     description: "Shows you how gay you are :D",
     aliases: ["gayness", "gaymachine"],
     ownerOnly: false,
