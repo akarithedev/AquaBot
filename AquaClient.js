@@ -1,11 +1,9 @@
-var express = require('express');
-var app = express();
+var http = require('http');
 
-app.get('/', (req, res) => {
-	res.send('I\'m alive');
-})
-
-app.listen(process.env.PORT | 8080);
+http.createServer(function(req,res) {
+	res.write(`I'm alive`);
+	res.end();
+}).listen();
 
 const discord = require("discord.js");
 const bot = new discord.Client({ intents: 32767, ws: { properties: { $browser: "Discord Android" } }});
@@ -21,11 +19,14 @@ const Apple = require("erela.js-apple");
 const Deezer = require("erela.js-deezer");
 const clientID = "ea41a85d7f444e25b83942adb2dfba70";
 const clientSecret = "1b8016b912d64aee80b1980ae0ada45c";
+const ascii = require("ascii-table");
 require("./structures/lavaplayer");
 
 bot.commands = new discord.Collection();
+bot.slashCommands = new discord.Collection();
 bot.aliases = new discord.Collection();
 bot.categories = fs.readdirSync("./commands");
+bot.slashCategories = fs.readdirSync("./slashCommands")
 bot.prefix = prefix;
 bot.devs = owner;
 bot.utils = new Util(bot);
@@ -75,11 +76,9 @@ fs.readdir('./events/lavalink/', (err, files) => {
   
    files.forEach(file => {
         const event = require(`./events/lavalink/${file}`);
-  
         let eventName = file.split(".")[0];
-        console.log(`Loading ${eventName}`)
         bot.music.on(eventName, event.bind(null, bot));
-  
+     console.log(`${eventName} ✅ | Loaded`)
     });
   
   });
