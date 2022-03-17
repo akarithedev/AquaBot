@@ -4,7 +4,6 @@ const ascii = require("ascii-table");
 
 module.exports = (bot, slash = false) => {
 	if(!slash) {
-
 		let table = new ascii("");
 		table.setHeading("Command", "Status");
     readdirSync("./commands/").forEach(dir => {
@@ -24,7 +23,6 @@ module.exports = (bot, slash = false) => {
             if (pull.aliases && Array.isArray(pull.aliases)) pull.aliases.forEach(alias => bot.aliases.set(alias, pull.name));
         }
     });
-    // Log the table
     console.log(table.toString());
 	} else {
 		
