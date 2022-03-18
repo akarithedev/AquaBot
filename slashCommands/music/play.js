@@ -44,14 +44,6 @@ module.exports = {
                 return interaction.reply({ embeds: [embed] })
             }
             if (player.state !== "CONNECTED") player.connect()
-						await interaction.deferReply();
-						let type = getType(songs);
-						let image = getImage(songs);
-						embed.setAuthor(`${type} Search`, image)
-						embed.setDescription(`${bot.emoji.searching} Looking for \`${songs}\``)
-						embed.setColor("BLUE")
-						embed.setFooter(`Requested by ${interaction.user.tag}`, interaction.user.displayAvatarURL({ format: "png", dynamic: true, size: 2048 }))
-						await interaction.editReply({ embeds: [embed] })
 
             if (res.loadType === "NO_MATCHES") {
                 if (!player.queue.current) player.destroy();
@@ -71,15 +63,16 @@ module.exports = {
                 embed.setFooter(`Requested by ${interaction.user.tag}`, interaction.user.displayAvatarURL({ format: "png", dynamic: true, size: 2048 }))
                 return interaction.editReply({ embeds: [embed] })
             }
-						if(res.tracks.length === 0) {
-							embed.setAuthor("Error while searching...")
-							embed.setDescription(`${bot.emoji.error} Couldn't find a song by that name!`)
-							embed.setColor("RED")
-							embed.setFooter(`Requested by ${interaction.user.tag}`, interaction.user.displayAvatarURL({ format: "png", dynamic: true, size: 2048 }))
-							return interaction.editReply({ embeds: [embed] })
-						}
 						player.queue.add(res.tracks[0]);
 						if (player.queue.length !== 0) {
+                            await interaction.deferReply();
+                            let type = getType(songs);
+                            let image = getImage(songs);
+                            embed.setAuthor(`${type} Search`, image)
+                            embed.setDescription(`${bot.emoji.searching} Looking for \`${songs}\``)
+                            embed.setColor("BLUE")
+                            embed.setFooter(`Requested by ${interaction.user.tag}`, interaction.user.displayAvatarURL({ format: "png", dynamic: true, size: 2048 }))
+                            await interaction.editReply({ embeds: [embed] })
 								setTimeout(() => {
 										embed.setAuthor("Song Added To Queue")
 										embed.setDescription(`${bot.emoji.success} Successfully added **[${res.tracks[0].title}](${res.tracks[0].uri})** to the queue.`)
