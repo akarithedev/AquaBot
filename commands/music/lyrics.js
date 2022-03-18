@@ -14,7 +14,7 @@ module.exports = {
         let voiceChannel = message.member.voice.channel;
         let track;
         try {
-            track = args.join("");
+            track = args.join(" ");
         if(!args.length) {
             embed.setDescription(`${bot.emoji.error} Please provide a song name.`)
             embed.setColor("BLUE")
@@ -35,6 +35,7 @@ module.exports = {
             let lyricembed = new discord.MessageEmbed()
             .setTitle(`${song.title} - Lyrics`)
             .setDescription(lyrics.length > 1900 ? `${lyrics.substr(0, 1900)}...` : lyrics)
+            .setThumbnail(song.thumbnail)
             .setColor("BLUE")
             return msg.edit({embeds: [lyricembed]})
             })
