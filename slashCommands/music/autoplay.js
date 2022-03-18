@@ -15,7 +15,7 @@ module.exports = {
         const { guild } = interaction;
 	    const member = await guild.members.cache.get(interaction.user.id) || await guil.members.fetch(interaction.user.id);
         let voiceChannel = member.voice.channel;
-        let player = bot.music.players.get(message.guild.id);
+        let player = bot.music.players.get(interaction.guild.id);
         let option = args.getString("option")
 
         if (!voiceChannel) {

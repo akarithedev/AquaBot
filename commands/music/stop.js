@@ -3,7 +3,7 @@ const embed = new discord.MessageEmbed()
 
 module.exports = {
     name: "stop",
-    description: "Cleares the queue",
+    description: "stops the music client",
     category: "music",
     aliases: ["leave", "disconnect"],
     run: async(bot, message, args) => {
