@@ -34,7 +34,7 @@ module.exports = {
             song.lyrics().then(lyrics => { 
             let lyricembed = new discord.MessageEmbed()
             .setTitle(`${song.title} - Lyrics`)
-            .setDescription(lyrics.length > 1900 ? `${lyrics.substr(0, 1900)}...` : lyrics)
+            .setDescription(lyrics.length > 1900 ? `\`\`\`${lyrics.substr(0, 1900)}...\`\`\`` : `\`\`\`${lyrics}\`\`\``)
             .setThumbnail(song.thumbnail)
             .setColor("BLUE")
             return msg.edit({embeds: [lyricembed]})
