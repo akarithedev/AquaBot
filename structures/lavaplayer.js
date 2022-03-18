@@ -12,9 +12,10 @@ module.exports = Structure.extend('Player', Player => {
 			this.vaporwave = false;
 			this.bassboost = false;
 			this.distortion = false;
-		
+		    this.vibrato = false;
 		  
 		}
+
         set8D(value) {
             if(typeof value !== "boolean") {throw new RangeError(`[ set8D Function Error ]: Please provide a valid value (true/false).`);}
     
@@ -61,6 +62,8 @@ module.exports = Structure.extend('Player', Player => {
 				this.bassboost = false;
 				this.distortion = false;
 				this.vaporwave = false;
+				this.vibrato = false;
+				this.setVibrato(false)
 				this.setVaporwave(false);
 				this.setBassboost(false);
 				this.setDistortion(false);
@@ -71,7 +74,35 @@ module.exports = Structure.extend('Player', Player => {
 			}
 			return this;
 		}
+		setVibrato(vibrato) {
+			if (typeof vibrato !== 'boolean') {throw new RangeError('Player#setVibrato() Vibrato can only be "true" or "false".');}
 
+			this.vibrato = vibrato;
+
+			if(vibrato) {
+				this.nightcore = false;
+				this.bassboost = false;
+				this.distortion = false;
+				this.vaporwave = false;
+				this.setBassboost(false);
+				this.setNightcore(false);
+				this.setVaporwave(false);
+				this.setDistortion(false);
+				this.node.send({
+                    op: "filters",
+                    guildId: this.guild,
+					vibrato: {
+						frequency: 10,
+						depth: 0.9
+					}
+			})
+
+		} else {
+
+			this.clearEffects()
+		}
+		return this;
+	}
 		setVaporwave(vaporwave) {
 			if (typeof vaporwave !== 'boolean') {throw new RangeError('Player#setVaporwave() Vaporwave can only be "true" or "false".');}
 
@@ -80,9 +111,11 @@ module.exports = Structure.extend('Player', Player => {
 				this.nightcore = false;
 				this.bassboost = false;
 				this.distortion = false;
+				this.vibrato = false;
 				this.setBassboost(false);
 				this.setNightcore(false);
 				this.setDistortion(false);
+				this.setVibrato(false);
 				this.setTimescale(0.8500000238418579, 0.800000011920929, 1);
 			} else {
 				this.setTimescale(1, 1, 1);
@@ -98,9 +131,11 @@ module.exports = Structure.extend('Player', Player => {
 				this.nightcore = false;
 				this.vaporwave = false;
 				this.bassboost = false;
+				this.vibrato = false;
 				this.setBassboost(false);
 				this.setNightcore(false);
 				this.setVaporwave(false);
+				this.setVibrato(false);
 				this.setDistort(0.5);
 			} else {
 				this.clearEffects();
@@ -115,8 +150,10 @@ module.exports = Structure.extend('Player', Player => {
 			if(bassboost) {
 				this.nightcore = false;
 				this.vaporwave = false;
+				this.vibrato = false;
 				this.setVaporwave(false);
 				this.setNightcore(false);
+				this.setVibrato(false);
 				this.setEqualizer(1, 0.85);
 			} else {
 				this.clearEffects();
@@ -198,6 +235,7 @@ module.exports = Structure.extend('Player', Player => {
 			this.nightcore = false;
 			this.vaporwave = false;
 			this.distortion = false;
+			this.vibrato = false;
 			this.clearEQ();
 
 			this.node.send({

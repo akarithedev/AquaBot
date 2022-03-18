@@ -33,7 +33,7 @@ module.exports = {
             return message.reply({ embeds: [embed] })
         }
         if(!filter) {
-            embed.setDescription(`${bot.emoji.error} Please provide a filter. Available filters: \`nightcore, vaporwave, bassboost, distort, 8D\``)
+            embed.setDescription(`${bot.emoji.error} Please provide a filter. Available filters: \`nightcore, vaporwave, bassboost, distort, 8D, vibrato\``)
             embed.setColor("BLUE")
             embed.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({ format: "png", dynamic: true, size: 2048 }))
             return message.reply({ embeds: [embed] })
@@ -242,6 +242,49 @@ module.exports = {
                     embed.setColor("BLUE")
                     embed.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({ format: "png", dynamic: true, size: 2048 }))
                     return message.reply({embeds: [embed]})
+                } 
+            } else {
+                embed.setDescription(`${bot.emoji.error} Not a valid value.`)
+                embed.setColor("BLUE")
+                embed.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({ format: "png", dynamic: true, size: 2048 }))
+                return message.reply({embeds: [embed]})
+            }
+
+        } else if(filter === "vibrato") {
+            if(!args[1]) {
+                embed.setDescription(`${bot.emoji.error} Please provide a value (on/off)`)
+                embed.setColor("BLUE")
+                embed.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({ format: "png", dynamic: true, size: 2048 }))
+                return message.reply({ embeds: [embed] })
+            }
+            if(args[1] === "on") {
+                if(!filters.includes("vibrato")) {
+                    bot.database.set(`filters_${message.guild.id}`, [...filters, 'vibrato']);
+                    player.setVibrato(true);
+                    embed.setDescription(`${bot.emoji.success} Successfully applied the vibrato filter`)
+                    embed.setColor("BLUE")
+                    embed.setFooter("It can take up to 15 seconds to hear the effect")
+                    return message.reply({embeds: [embed]})
+                } else {
+                    embed.setDescription(`${bot.emoji.error} The vibrato filter is already applied`)
+                    embed.setColor("BLUE")
+                    embed.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({ format: "png", dynamic: true, size: 2048 }))
+                    return message.reply({embeds: [embed]})
+                }
+            } else 
+            if(args[1] === "off") {
+                if(filters.includes("vibrato")) {
+                    bot.database.set(`filters_${message.guild.id}`, filters.filter(a => a != 'vibrato'));
+                    player.setVibrato(false);
+                    embed.setDescription(`${bot.emoji.success} Successfully removed the vibrato filter`)
+                    embed.setColor("BLUE")
+                    embed.setFooter("It can take up to 15 seconds to clear the effect")
+                    return message.reply({embeds: [embed]})
+                } else {
+                    embed.setDescription(`${bot.emoji.error} The vibrato filter is not applied.`)
+                    embed.setColor("BLUE")
+                    embed.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({ format: "png", dynamic: true, size: 2048 }))
+                    return message.reply({embeds: [embed]})
                 }
             } else {
                 embed.setDescription(`${bot.emoji.error} Not a valid value.`)
@@ -249,7 +292,8 @@ module.exports = {
                 embed.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({ format: "png", dynamic: true, size: 2048 }))
                 return message.reply({embeds: [embed]})
             }
-        } else {
+        }
+        else {
             embed.setDescription(`${bot.emoji.error} **${filter}** Is not a valid filter`)
             embed.setColor("BLUE")
             embed.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({ format: "png", dynamic: true, size: 2048 }))
