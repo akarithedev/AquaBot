@@ -1,13 +1,14 @@
 module.exports = {
 	handle(bot) {
-		let guilds = bot.guilds
-				.filter(a => a.id === '856243057308598302'); // toate serverele care se vor baga slash commands-urile
+		let guilds = bot.guilds ; // toate serverele care se vor baga slash commands-urile
 		bot.slashCommands.forEach(command => {
 			let permissions = [];
 			let data = {
 				name: command.name,
 				description: command.description,
 				category: command.category,
+			    ownerOnly: command.ownerOnly,
+				nsfwOnly: command.nsfwOnly,
 				options: command.options
 			}
 			if(command.ownerOnly) {

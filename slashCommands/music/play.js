@@ -6,6 +6,8 @@ module.exports = {
     name: "play",
     description: "Play a song or a playlist from youtube/spotify/soundcloud/deezer/appplemusic",
     category: "music",
+    ownerOnly: false,
+    nsfwOnly: false,
     options: [{
         name: "song",
         description: "track url/query",

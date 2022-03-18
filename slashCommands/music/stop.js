@@ -5,6 +5,8 @@ module.exports = {
     name: "stop",
     description: "Stops the music client",
     category: "music",
+    ownerOnly: false,
+    nsfwOnly: false,
     options: [],
     run: async(bot, interaction, args) => {
         const { guild } = interaction;

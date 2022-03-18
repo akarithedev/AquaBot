@@ -5,6 +5,8 @@ module.exports = {
     name: "skip",
     description: "Skips the current song and jumps to the next one",
     category: "music",
+    ownerOnly: false,
+    nsfwOnly: false,
     options: [],
     run: async(bot, interaction, args) => {
         const { guild } = interaction;

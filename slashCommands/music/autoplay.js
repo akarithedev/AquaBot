@@ -5,6 +5,8 @@ module.exports = {
     name: "autoplay",
     category: "music",
     description: "toggle autoplay on or off.",
+    ownerOnly: false,
+    nsfwOnly: false,
     options: [{
         name: "option",
         description: "on/off",
