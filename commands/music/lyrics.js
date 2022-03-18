@@ -14,17 +14,15 @@ module.exports = {
         let voiceChannel = message.member.voice.channel;
         let track;
         try {
-            track = player.queue.current.title;
-            if(track === null) {
-                track = args.join("")
-            }
-        if(!track) {
+            track = args.join("") || player.queue.current.title
+        if(!args.length) {
             embed.setDescription(`${bot.emoji.error} Please provide a song name.`)
             embed.setColor("BLUE")
             embed.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({ format: "png", dynamic: true, size: 2048 }))
             return message.reply({ embeds: [embed] })
         }
-        let song = await GeniusLyric.songs.search(track, {limit: track})[0];
+        let findlyrics = await GeniusLyric.songs.search(track, {limit: track});
+        let song = findlyrics[0];
 
         let embed1 = new discord.MessageEmbed()
         .setDescription(`${bot.emoji.searching} Searching lyrics for \`${track}\``)
