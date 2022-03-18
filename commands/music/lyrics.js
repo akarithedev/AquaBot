@@ -14,7 +14,7 @@ module.exports = {
         let voiceChannel = message.member.voice.channel;
         let track;
         try {
-            track = args.join("") || player.queue.current.title
+            track = args.join("");
         if(!args.length) {
             embed.setDescription(`${bot.emoji.error} Please provide a song name.`)
             embed.setColor("BLUE")
@@ -39,6 +39,7 @@ module.exports = {
             return msg.edit({embeds: [lyricembed]})
             })
         }, 5000)
+
     } catch(err) {
         embed.setDescription(`${bot.emoji.error} ERROR: ${err.message}.`)
         embed.setColor("RED")
