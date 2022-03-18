@@ -1,5 +1,5 @@
 const discord = require("discord.js")
-const embed = new discord.interactionEmbed()
+const embed = new discord.MessageEmbed()
 
 module.exports = {
     name: "stop",
