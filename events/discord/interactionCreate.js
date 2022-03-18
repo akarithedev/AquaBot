@@ -10,7 +10,6 @@ module.exports.run = async(bot, interaction) => {
             .setTitle("Command Error")
             .setDescription(`${bot.emoji.error} You do not have permission to use this command.`)
             .setColor("RED")
-            console.log(`User ${message.author.tag} tried to use a restricted command (${cmd})`)
             return interaction.reply({ embeds: [embed1] })
         }
 	}
