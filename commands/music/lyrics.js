@@ -21,28 +21,31 @@ module.exports = {
         }
         let findlyrics = await GeniusLyric.songs.search(track, {limit: track});
         let song = findlyrics[0];
-        let lyrics = await song.lyrics()
-        let embed1 = new discord.MessageEmbed()
-        .setDescription(`${bot.emoji.searching} Searching lyrics for \`${track}\``)
-        .setColor("BLUE")
-        .setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({ format: "png", dynamic: true, size: 2048 }))
+       let embed1 = new discord.MessageEmbed()
+	        .setDescription(`${bot.emoji.searching} Searching lyrics for \`${track}\``)
+	        .setColor("BLUE")
+	        .setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({ format: "png", dynamic: true, size: 2048 }))
         let msg = await message.reply({embeds: [embed1]})
+        
+				if(findlyrics.length === 0 || song === null) {
+          setTimeout(() => {
+					let notfoundlyric = new discord.MessageEmbed()
+						.setTitle("No lyrics")
+						.setDescription(`${bot.emoji.error} No lyrics found for this song`)
+						.setColor("RED")
+					msg.edit({embeds: [notfoundlyric]})
+          }, 5000)
+					return;
+				}
+        setTimeout(async() => {
+			    let lyrics = await song.lyrics()
 
-        setTimeout(() => {
-          if(song !== null) {
-            let lyricembed = new discord.MessageEmbed()
-            .setTitle(`${song.title} - Lyrics`)
-            .setDescription(lyrics.length > 1900 ? `\`\`\`${lyrics.substr(0, 1900)}...\`\`\`` : `\`\`\`${lyrics}\`\`\``)
-            .setThumbnail(song.thumbnail)
-            .setColor("BLUE")
-            return msg.edit({embeds: [lyricembed]})
-          } else {
-                            let notfoundlyric = new discord.MessageEmbed()
-                .setTitle("No lyrics")
-                .setDescription(`${bot.emoji.error} No lyrics found for this song`)
-                .setColor("RED")
-                return msg.edit({embeds: [notfoundlyric]})
-          }
+					let lyricembed = new discord.MessageEmbed()
+						.setTitle(`${song.title} - Lyrics`)
+						.setDescription(lyrics.length > 1900 ? `\`\`\`${lyrics.substr(0, 1900)}...\`\`\`` : `\`\`\`${lyrics}\`\`\``)
+						.setThumbnail(song.thumbnail)
+						.setColor("BLUE")
+					msg.edit({embeds: [lyricembed]})
         }, 5000)
 
     }
