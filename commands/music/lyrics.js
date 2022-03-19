@@ -23,7 +23,7 @@ module.exports = {
         }
         let findlyrics = await GeniusLyric.songs.search(track, {limit: track});
         let song = findlyrics[0];
-
+        let lyrics = song.lyrics()
         let embed1 = new discord.MessageEmbed()
         .setDescription(`${bot.emoji.searching} Searching lyrics for \`${track}\``)
         .setColor("BLUE")
@@ -31,14 +31,19 @@ module.exports = {
         let msg = await message.reply({embeds: [embed1]})
 
         setTimeout(() => {
-            song.lyrics().then(lyrics => { 
+            if(!lyrics) {
+                let notfoundlyric = new discord.MessageEmbed()
+                .setTitle("No lyrics")
+                .setDescription(`${bot.emoji.error} No lyrics found for this song`)
+                .setColor("RED")
+                return msg.edit({embeds: [notfoundlyric]})
+            }
             let lyricembed = new discord.MessageEmbed()
             .setTitle(`${song.title} - Lyrics`)
             .setDescription(lyrics.length > 1900 ? `\`\`\`${lyrics.substr(0, 1900)}...\`\`\`` : `\`\`\`${lyrics}\`\`\``)
             .setThumbnail(song.thumbnail)
             .setColor("BLUE")
             return msg.edit({embeds: [lyricembed]})
-            })
         }, 5000)
 
     } catch(err) {
