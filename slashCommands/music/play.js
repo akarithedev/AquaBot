@@ -45,8 +45,8 @@ module.exports = {
                 return interaction.reply({ embeds: [embed] })
             }
             if (player.state !== "CONNECTED") player.connect()
-          interaction.deferReply();
-          
+  await interaction.deferReply();
+
             if (res.loadType === "NO_MATCHES") {
                 if (!player.queue.current) player.destroy();
                 embed.setDescription(`${bot.emoji.error} I couldn't found any song called: \`${songs}\``)
@@ -68,7 +68,6 @@ module.exports = {
             }
 						player.queue.add(res.tracks[0]);
 						if (player.queue.length !== 0) {
-                            await interaction.deferReply();
                             let type = getType(songs);
                             let image = getImage(songs);
                             embed.setAuthor(`${type} Search`, image)
@@ -91,7 +90,7 @@ module.exports = {
             embed.setDescription(`${bot.emoji.error} ERROR: \`${e.message}\``)
             embed.setColor("BLUE")
             embed.setFooter(`Requested by ${interaction.user.tag}`, interaction.user.displayAvatarURL({ format: "png", dynamic: true, size: 2048 }))
-					if(interaction.deferred) {
+                					if(interaction.deferred) {
             return interaction.editReply({ embeds: [embed] })
 					} else {
             return interaction.reply({ embeds: [embed] })
