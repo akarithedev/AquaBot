@@ -23,7 +23,6 @@ module.exports = {
             embed.setDescription("You need to be in a voice channel in order to play music.")
             embed.setFooter(`Requested by ${interaction.user.tag}`, interaction.user.displayAvatarURL({ format: "png", dynamic: true, size: 2048 }))
             interaction.reply({ embeds: [embed] })
-            return;
         }
 
         let songs;
@@ -45,16 +44,18 @@ module.exports = {
                 embed.setColor("BLUE")
                 embed.setFooter(`Requested by ${interaction.user.tag}`, interaction.user.displayAvatarURL({ format: "png", dynamic: true, size: 2048 }))
                 interaction.reply({ embeds: [embed] })
-                return;
+              return;
             }
             if (player.state !== "CONNECTED") player.connect()
-
+          interaction.deferReply();
+          
             if (res.loadType === "NO_MATCHES") {
                 if (!player.queue.current) player.destroy();
                 embed.setDescription(`${bot.emoji.error} I couldn't found any song called: \`${songs}\``)
                 embed.setColor("BLUE")
                 embed.setFooter(`Requested by ${interaction.user.tag}`, interaction.user.displayAvatarURL({ format: "png", dynamic: true, size: 2048 }))
-                return interaction.editReply({ embeds: [embed] })
+                interaction.reply({ embeds: [embed] })
+              return;
 
             }
 
