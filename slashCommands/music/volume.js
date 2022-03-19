@@ -46,7 +46,7 @@ module.exports = {
         }
 
 
-        if(volume < 100) {
+        if(volume > 100) {
             embed.setDescription(`${bot.emoji.error} You should provide a number between 1 and 100`)
             embed.setColor("BLUE")
             embed.setFooter(`Requested by ${interaction.user.tag}`, interaction.user.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
