@@ -1,5 +1,5 @@
 const discord = require("discord.js")
-const embed = new discord.Embed()
+const embed = new discord.MessageEmbed()
 const Genius = require("genius-lyrics")
 const GeniusLyric = new Genius.Client("cg23HmOR9FsT_N-E5R0k02kdDTD-sCTGHSwMoBYkdNMUVQ4fHnIjMwTutQ8h1Cgn")
 
@@ -23,7 +23,7 @@ module.exports = {
         let track = args.getString("song")
         let findlyrics = await GeniusLyric.songs.search(track, {limit: track});
         let song = findlyrics[0];
-       let embed1 = new discord.Embed()
+       let embed1 = new discord.MessageEmbed()
 	        .setDescription(`${bot.emoji.searching} Searching lyrics for \`${track}\``)
 	        .setColor("BLUE")
 	        .setFooter(`Requested by ${interaction.user.tag}`, interaction.user.displayAvatarURL({ format: "png", dynamic: true, size: 2048 }))
@@ -31,7 +31,7 @@ module.exports = {
         
 				if(findlyrics.length === 0 || song === null) {
           setTimeout(() => {
-					let notfoundlyric = new discord.Embed()
+					let notfoundlyric = new discord.MessageEmbed()
 						.setTitle("No lyrics")
 						.setDescription(`${bot.emoji.error} No lyrics found for this song`)
 						.setColor("RED")
@@ -42,7 +42,7 @@ module.exports = {
         setTimeout(async() => {
 			    let lyrics = await song.lyrics()
 
-					let lyricembed = new discord.Embed()
+					let lyricembed = new discord.MessageEmbed()
 						.setTitle(`${song.title} - Lyrics`)
 						.setDescription(lyrics.length > 1900 ? `\`\`\`${lyrics.substr(0, 1900)}...\`\`\`` : `\`\`\`${lyrics}\`\`\``)
 						.setThumbnail(song.thumbnail)
