@@ -23,6 +23,7 @@ module.exports = {
             embed.setDescription("You need to be in a voice channel in order to play music.")
             embed.setFooter(`Requested by ${interaction.user.tag}`, interaction.user.displayAvatarURL({ format: "png", dynamic: true, size: 2048 }))
             interaction.reply({ embeds: [embed] })
+            return;
         }
 
         let songs;
