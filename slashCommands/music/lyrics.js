@@ -36,8 +36,8 @@ module.exports = {
 						.setDescription(`${bot.emoji.error} No lyrics found for this song`)
 						.setColor("RED")
 				   interaction.editReply({embeds: [notfoundlyric]})
-           return;
           }, 5000)
+          return;
 				}
         setTimeout(async() => {
 			    let lyrics = await song.lyrics()
