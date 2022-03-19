@@ -23,7 +23,7 @@ module.exports = {
         }
         let findlyrics = await GeniusLyric.songs.search(track, {limit: track});
         let song = findlyrics[0];
-        let lyrics = song.lyrics()
+        let lyrics = await song.lyrics()
         let embed1 = new discord.MessageEmbed()
         .setDescription(`${bot.emoji.searching} Searching lyrics for \`${track}\``)
         .setColor("BLUE")
@@ -31,7 +31,7 @@ module.exports = {
         let msg = await message.reply({embeds: [embed1]})
 
         setTimeout(() => {
-            if(!lyrics) {
+            if(lyrics === null) {
                 let notfoundlyric = new discord.MessageEmbed()
                 .setTitle("No lyrics")
                 .setDescription(`${bot.emoji.error} No lyrics found for this song`)
