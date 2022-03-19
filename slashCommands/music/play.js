@@ -1,4 +1,3 @@
-const ms = require("parse-ms")
 const discord = require("discord.js");
 const embed = new discord.MessageEmbed()
 
