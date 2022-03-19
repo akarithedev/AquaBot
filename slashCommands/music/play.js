@@ -22,7 +22,7 @@ module.exports = {
             embed.setColor("BLUE")
             embed.setDescription("You need to be in a voice channel in order to play music.")
             embed.setFooter(`Requested by ${interaction.user.tag}`, interaction.user.displayAvatarURL({ format: "png", dynamic: true, size: 2048 }))
-            interaction.reply({ embeds: [embed] })
+            return interaction.reply({ embeds: [embed] })
         }
 
         let songs;
@@ -43,8 +43,7 @@ module.exports = {
                 embed.setDescription(`${bot.emoji.error} I'm being used in another voice channel.`)
                 embed.setColor("BLUE")
                 embed.setFooter(`Requested by ${interaction.user.tag}`, interaction.user.displayAvatarURL({ format: "png", dynamic: true, size: 2048 }))
-                interaction.reply({ embeds: [embed] })
-              return;
+                return interaction.reply({ embeds: [embed] })
             }
             if (player.state !== "CONNECTED") player.connect()
           interaction.deferReply();
@@ -54,7 +53,7 @@ module.exports = {
                 embed.setDescription(`${bot.emoji.error} I couldn't found any song called: \`${songs}\``)
                 embed.setColor("BLUE")
                 embed.setFooter(`Requested by ${interaction.user.tag}`, interaction.user.displayAvatarURL({ format: "png", dynamic: true, size: 2048 }))
-                interaction.reply({ embeds: [embed] })
+                return interaction.editReply({ embeds: [embed] })
               return;
 
             }
