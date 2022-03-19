@@ -27,7 +27,7 @@ module.exports = {
 	        .setDescription(`${bot.emoji.searching} Searching lyrics for \`${track}\``)
 	        .setColor("BLUE")
 	        .setFooter(`Requested by ${interaction.user.tag}`, interaction.user.displayAvatarURL({ format: "png", dynamic: true, size: 2048 }))
-        return interaction.reply({embeds: [embed1]})
+        interaction.reply({embeds: [embed1]})
         
 				if(findlyrics.length === 0 || song === null) {
           setTimeout(() => {
@@ -36,8 +36,8 @@ module.exports = {
 						.setDescription(`${bot.emoji.error} No lyrics found for this song`)
 						.setColor("RED")
 				   interaction.editReply({embeds: [notfoundlyric]})
+           return;
           }, 5000)
-					return;
 				}
         setTimeout(async() => {
 			    let lyrics = await song.lyrics()
@@ -47,7 +47,8 @@ module.exports = {
 						.setDescription(lyrics.length > 1900 ? `\`\`\`${lyrics.substr(0, 1900)}...\`\`\`` : `\`\`\`${lyrics}\`\`\``)
 						.setThumbnail(song.thumbnail)
 						.setColor("BLUE")
-					return interaction.editReply({embeds: [lyricembed]})
+					interaction.editReply({embeds: [lyricembed]})
+          return;
         }, 5000)
 
     }
