@@ -31,7 +31,7 @@ bot.prefix = prefix;
 bot.devs = owner;
 bot.utils = new Util(bot);
 bot.snek = require("axios");
-bot.database = new Database(`mongodb://admin:${encodeURIComponent("aP@55word")}@ca1.node.sneakyhub.com:30037/aqua?authSource=admin`);
+bot.database = new Database(`mongodb+srv://aquadb:aquadb557@aqua1.3zpil.mongodb.net/Aqua?retryWrites=true&w=majority`);
 bot.music = new Manager({
     nodes,
     defaultSearchPlatform: 'youtube music',

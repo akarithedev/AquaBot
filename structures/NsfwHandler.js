@@ -1,5 +1,5 @@
 const axios = require('axios');
-let base = 'http://164.132.158.16:30028/?type=';
+let base = 'http://am1.falkorhost.xyz:31233/?type=';
 
 module.exports = {
 	async hentai() {

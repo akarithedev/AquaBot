@@ -1,11 +1,16 @@
 {
-    "prefix": "a/",
-    "owner": ["852764428424314890", "872945920365432883"],
-    "nodes": [{
-        "host": "lavalink-repl.anamaria72.repl.co", "port": 443, "password": "youshallnotpass", "identifier": "AquaNode1", "secure": true
+  "prefix": "a/",
+  "owner": ["872945920365432883", "875393830373982358"],
+  "nodes": [
+  {
+      "host": "eu2-free.darynodes.in", "port": 25543, "password": "kaylynisthebest", "identifier": "Special"
+  },
+    {
+      "host": "lavalink-repl.anamaria72.repl.co", "port": 443, "password": "youshallnotpass", "identifier": "AquaNode2", "secure": true
     },
-{
-    "host": "lavalink2.anamaria72.repl.co", "port": 443, "password": "youshallnotpass", "identifier": "AquaNode2", "secure": true
-
-}]
+    { "host": "lavalink2.anamaria72.repl.co", "port": 443, "password": "youshallnotpass", "identifier": "AquaNode3", "secure": true
+    },
+      { "host": "de1.pxnodes.cf", "port": 25565, "password": "youshallnotpass", "identifier": "AquaNode4"
+    }
+]
 }

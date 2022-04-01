@@ -3,8 +3,8 @@ const embed = new discord.MessageEmbed()
 
 module.exports = {
     name: "volume",
-    category: "music",
     description: "Changes the song volume.",
+    category: "music",
     ownerOnly: false,
     nsfwOnly: false,
     options: [{
@@ -26,7 +26,7 @@ module.exports = {
             embed.setColor("BLUE")
             embed.setFooter(`Requested by ${interaction.user.tag}`, interaction.user.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
             interaction.reply({embeds: [embed]})
-            return;
+          return;
         }
 
         if(!player) {

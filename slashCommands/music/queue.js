@@ -1,5 +1,5 @@
 const discord = require("discord.js")
-const embed = new discord.eEmbed()
+const embed = new discord.MessageEmbed()
 const ms = require("parse-ms")
 
 module.exports = {

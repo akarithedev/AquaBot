@@ -70,18 +70,15 @@ module.exports = class Util {
 }
 
 async pagination(msg, author, contents, init = true, currPage = 0) {
-	if (init) for (const emoji of this.paginationEmojis) await msg.react(emoji);
-
-	const collector = msg.createReactionCollector((reaction, user) => {
-		return this.paginationEmojis.includes(reaction.emoji.name) && user.id === author.id;
-	}, {
-		max: 1,
-		time: 30000
-	});
-
-	collector
-		.on("collect", (reaction) => {
-			reaction.users.remove(author);
+		if (init) for (const emoji of this.paginationEmojis) await msg.react(emoji);
+  
+        const filter = (reaction, user) => { return user.id === author.id };
+        
+        const collector = msg.createReactionCollector({filter, time: 30000})
+  
+	collector.on("collect", (reaction, user) => {
+			reaction.users.remove(reaction.users.resolve(author));
+      reaction.users.remove(reaction.users.resolve(author.id));
 
 			const emoji = reaction.emoji.name;
 			if (emoji === this.paginationEmojis[0]) currPage--;
@@ -93,7 +90,7 @@ async pagination(msg, author, contents, init = true, currPage = 0) {
 				.setDescription(contents[currPage])
 				.setFooter(`Page ${currPage + 1} of ${contents.length}.`);
 
-			msg.edit(embed);
+			msg.edit({embeds: [embed]});
 
 			this.pagination(msg, author, contents, false, currPage);
 		})
@@ -108,10 +105,7 @@ chunk(arr, size) {
 	}
 	return temp;
 }
-duration(ms) {
-	const sec = Math.floor((ms / 1000) % 60).toString()
-	const min = Math.floor((ms / (1000 * 60)) % 60).toString()
-	const hrs = Math.floor((ms / (1000 * 60 * 60)) % 60).toString()
-	return `${hrs.padStart(2, '0')}:${min.padStart(2, '0')}:${sec.padStart(2, '0')}`
-}
+  duration(ms) {
+    
+  }
 };
