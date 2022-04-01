@@ -9,7 +9,7 @@ module.exports = {
     ownerOnly: false,
     run: async (bot, message, args) => {
         let voiceChannel = message.member.voice.channel;
-        let player = bot.music.players.get(message.guild.id);
+        let player = bot.music.get(message.guild.id);
         let option = args[0]
 
         if (!voiceChannel) {

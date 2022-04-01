@@ -1,6 +1,8 @@
 module.exports = {
-	handle(bot) {
-		let guilds = bot.guilds.cache.filter(g => g.id === "856243057308598302") ; // toate serverele care se vor baga slash commands-urile
+	async handle(bot) {
+		let guilds = bot.guilds.cache
+			// .filter(g => g.id === "856243057308598302")
+			// "856243057308598302" - test server (Bot Maintenence)
 		bot.slashCommands.forEach(command => {
 			let permissions = [];
 			let data = {

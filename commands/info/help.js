@@ -13,7 +13,7 @@ module.exports = {
        .setColor("BLUE")
        .setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
        .setTitle(`${bot.user.username} Help`)
-       .setDescription(`Hi there, I'm a bot made by Sweetie for Aqua Network\n**PREFIX**: \`${bot.prefix}\``)
+       .setDescription(`Hi, i'm a multi purpose bot\n**PREFIX**: \`${bot.prefix}\``)
        .setThumbnail(bot.user.displayAvatarURL({format: "png", size: 2048}))
 
        let categories;
@@ -47,7 +47,7 @@ module.exports = {
         }
          let cmdinfo = new discord.MessageEmbed()
          .setTitle(`${bot.user.username} Help`)
-         .setDescription(`**Command**: \`${command.name}\`\n**Category**: \`${command.category}\`\n**Description**: \`${command.description}\`\n**Aliases**: ${command.aliases ? command.aliases.map(alias => `\`${alias}\``).join(', ') : 'No aliases found'}\n**Owner Only?**: \`${command.ownerOnly ? "true" : "false"}\``)
+         .setDescription(`**Command**: \`${command.name}\`\n**Category**: \`${command.category}\`\n**Description**: \`${command.description}\`\n**Aliases**: ${command.aliases ? command.aliases.map(alias => `\`${alias}\``).join(', ') : 'No aliases found'}\n**Owner Only?**: \`${command.ownerOnly ? "true" : "false"}\`\n**Nsfw Only**: \`${command.nsfwOnly ? "true" : "false"}\``)
          .setColor("BLUE")
          .setThumbnail(bot.user.displayAvatarURL({format: "png", size: 2048}))
          .setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))

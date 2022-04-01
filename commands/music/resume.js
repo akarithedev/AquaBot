@@ -9,7 +9,6 @@ module.exports = {
     run: async (bot, message, args) => {
         let voiceChannel = message.member.voice.channel;
         let player = bot.music.get(message.guild.id);
-        let option = args[0]
 
         if (!voiceChannel) {
             embed.setDescription(`${bot.emoji.error} You need to be in a voice channel to use the resume command.`)

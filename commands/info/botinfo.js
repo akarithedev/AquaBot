@@ -1,7 +1,7 @@
 const os = require("os")
 const moment = require("moment")
 const discord = require("discord.js")
-const { version } = require("./package.json");
+const { version } = require("../../package.json");
 
 module.exports = {
     name: "botinfo",
@@ -14,16 +14,17 @@ module.exports = {
         let voiceChannels = bot.channels.cache.filter(c => c.type === "GUILD_VOICE").size;
         let stageChannels = bot.channels.cache.filter(c => c.type === "GUILD_STAGE_VOICE").size;
         let users = bot.users.cache.filter(u => !u.bot).size;
-        let developers = bot.devs.map(a => bot.users.cache.get(a))
-
+        let guilds = bot.guilds.cache.size;
+      let developers = bot.devs.map(a => bot.users.cache.get(a))
         let array = [
-            `**Bot Developers**: \`${developers.filter(u => u.tag).join(", ")}\``,
+            `**Bot Developers**: \`${developers.map(u => u.tag).join(", ")}\``,
             `**Bot Creation**: \`${bot.user.createdAt.toUTCString()}\``,
             `**Channels**:`,
             `Text Channels: \`${textChannels}\``,
             `Voice Channels: \`${voiceChannels}\``,
             `Stage Channels: \`${stageChannels}\``,
             `**Users**: \`${users}\``,
+            `**Guilds**: \`${guilds}\``,
             `**Voice Connections**: \`${bot.voice.adapters.size}\``,
             `**Versions**:`,
             `DiscordJs Version: \`${discord.version}\``,

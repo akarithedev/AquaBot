@@ -63,7 +63,7 @@ module.exports = {
         ]
         embed.setDescription(array.join("\n"))
         embed.setColor("BLUE")
-        embed.setAuthor(`Queue for guild ${message.guild.name}`)
+        embed.setTitle(`Queue for guild ${message.guild.name}`)
         embed.setThumbnail(message.guild.iconURL({ size: 4096, dynamic: true, format: "png" }))
         embed.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({ format: "png", dynamic: true, size: 2048 }))
         message.reply({ embeds: [embed] })

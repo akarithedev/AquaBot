@@ -31,12 +31,6 @@ module.exports = {
             return message.reply({embeds: [embed]})
         }
 
-        if(!player) {
-            embed.setDescription(`${bot.emoji.error} There is no song/s playing within this guild.`)
-            embed.setColor("BLUE")
-            embed.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
-            return message.reply({embeds: [embed]})
-        }
 
         let current = player.queue.current;
         function duration(ms) {
@@ -46,7 +40,7 @@ module.exports = {
             return `${hrs.padStart(2, '0')}:${min.padStart(2, '0')}:${sec.padStart(2, '0')}`
         }
         embed.setTitle("Current Song Playing")
-        embed.setColor("BLUE")
+      embed.setColor("BLUE")
         let array = [
             `**Title**: \`${current.title}\``,
             `**Duration**: \`${duration(current.duration)}\``,

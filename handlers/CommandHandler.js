@@ -2,7 +2,7 @@ const { readdirSync } = require("fs");
 
 const ascii = require("ascii-table");
 
-module.exports = (bot, slash = false) => {
+module.exports = (bot, slash = false) => { //am inteles
 	if(!slash) {
 		let table = new ascii("");
 		table.setHeading("Command", "Status");
@@ -23,6 +23,7 @@ module.exports = (bot, slash = false) => {
             if (pull.aliases && Array.isArray(pull.aliases)) pull.aliases.forEach(alias => bot.aliases.set(alias, pull.name));
         }
     });
+    // Log the table
     console.log(table.toString());
 	} else {
 		

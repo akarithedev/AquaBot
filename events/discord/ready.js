@@ -10,5 +10,5 @@ module.exports.run = async(bot) => {
 	CommandHandler(bot, true);
 	setTimeout(() => {
 		slashCommandHandler.handle(bot);
-	}, 2000);
+	}, 2000); // 2 secunde dupa ce va fi ready, ca sa poata da load la servere. 
 }

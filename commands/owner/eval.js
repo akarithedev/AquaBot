@@ -10,7 +10,7 @@ module.exports = {
     run: async(bot, message, query, data) => {
         let msg = message;
 const { args, flags } = parseQuery(query);
-        
+const player = bot.music.players.get(msg.guild.id)
     try {
       if (!args.length) {
           let embed = new MessageEmbed()

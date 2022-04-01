@@ -35,7 +35,7 @@ module.exports = {
         }
 
         if(!volume) {
-            embed.setDescription(`${bot.emoji.error} Please provide a value between 1-100`)
+            embed.setDescription(`${bot.emoji.error} Please provide a number to set the volume`)
             embed.setColor("BLUE")
             embed.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
             return message.reply({embeds: [embed]})
@@ -47,7 +47,12 @@ module.exports = {
             embed.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
             return message.reply({embeds: [embed]})
         }
-
+        if(volume > 100) {
+            embed.setDescription(`${bot.emoji.error} You should provide a number between 1 and 100`)
+            embed.setColor("BLUE")
+            embed.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
+            return message.reply({embeds: [embed]})
+        }
         player.setVolume(volume);
         embed.setDescription(`${bot.emoji.success} Successfully set the volume to **${volume}**`)
         embed.setColor("BLUE")

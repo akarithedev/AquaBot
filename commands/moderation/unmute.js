@@ -35,10 +35,7 @@ module.exports = {
         }
 
 
-const targetuser = message.guild.members.cache.get(target.id) || await message.guild.members.fetch(target.id);        
-        if(!reason) {
-            reason = "No reason"
-        }
+const targetuser = await message.guild.members.cache.get(target.id) || await message.guild.members.fetch(target.id);        
         let muterole = message.guild.roles.cache.find(role => role.name === mutedrole);
         if(!muterole) {
             let embed = new discord.MessageEmbed()
@@ -50,12 +47,12 @@ const targetuser = message.guild.members.cache.get(target.id) || await message.g
         }
 
 
-  if(targetuser.roles.cache.some(role => role.name !== mutedrole)) {
+  if(!targetuser.roles.cache.get(muterole.id)) {
       let embed = new discord.MessageEmbed()
       .setDescription(`${bot.emoji.error} The member is already unmuted`)
       .setColor("RED")
       .setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
-        return message.reply({embeds: [embed]})
+    return message.reply({embeds: [embed]})
   }
 
 if(target) {

@@ -34,12 +34,6 @@ module.exports = {
             return message.reply({embeds: [embed]})
         }
 
-        if(!player) {
-            embed.setDescription(`${bot.emoji.error} There is no song/s playing within this guild.`)
-            embed.setColor("BLUE")
-            embed.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
-            return message.reply({embeds: [embed]})
-        }
 
         if(args[0] === "0") {
         embed.setDescription(`${bot.emoji.error} You cannot remove the current song from the queue.`)

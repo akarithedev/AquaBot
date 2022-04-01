@@ -16,8 +16,7 @@ module.exports = {
             .setColor("BLUE")
             .setDescription(`You are ${gay}% gay`)
             .setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({ format: "png", dynamic: true, size: 2048 }))
-            message.reply({embeds: [embed]})
-            return;
+            return message.reply({embeds: [embed]})
 
         } else {
             const embed = new discord.MessageEmbed()
@@ -25,17 +24,8 @@ module.exports = {
             .setColor("BLUE")
             .setDescription(`${target.tag} is ${gay}% gay`)
             .setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({ format: "png", dynamic: true, size: 2048 }))
-            message.reply({embeds: [embed]})
-            return;
+           return message.reply({embeds: [embed]})
 
         }
-        if(target.bot) {
-            const embed2 = new discord.MessageEmbed()
-            .setDescription(`${bot.emoji.error} This command cannot be used on bots`)
-            .setColor("RED")
-            .setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({ format: "png", dynamic: true, size: 2048 }))
-            message.reply({embeds: [embed2]})
-            return;
-    }
 }
 }
