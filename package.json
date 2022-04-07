@@ -4,7 +4,7 @@
   "description": "A multi purpose bot",
   "main": "AquaClient.js",
   "scripts": {
-    "test": "echo Triassic is the best",
+    "test": "echo #K is the best <3",
     "start": "node ."
   },
   "author": "NightQueen",
