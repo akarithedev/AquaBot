@@ -2,7 +2,7 @@ const { readdirSync } = require("fs");
 
 const ascii = require("ascii-table");
 
-module.exports = (bot, slash = false) => { //am inteles
+module.exports = (bot, slash = false) => {
 	if(!slash) {
 		let table = new ascii("");
 		table.setHeading("Command", "Status");

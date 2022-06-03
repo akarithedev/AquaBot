@@ -48,7 +48,7 @@ module.exports = {
             player.set("requester", interaction.user);
             player.set("identifier", identifier);
             const search = `https://www.youtube.com/watch?v=${identifier}&list=RD${identifier}`;
-            res = await player.search(search, member.user);
+            res = await player.search(search, interaction.user);
             player.queue.add(res.tracks[1]);
             embed.setDescription(`${bot.emoji.success} Autoplay is now turned **on**`)
             embed.setColor("BLUE")

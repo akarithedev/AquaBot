@@ -8,7 +8,7 @@ module.exports.run = async(bot) => {
 	bot.music.init(bot.user.id)
 	bot.database.connect();
 	CommandHandler(bot, true);
-	setTimeout(() => {
+	setInterval(() => {
 		slashCommandHandler.handle(bot);
-	}, 2000); // 2 secunde dupa ce va fi ready, ca sa poata da load la servere. 
+	}, 2000);
 }

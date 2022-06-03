@@ -1,9 +1,14 @@
-var http = require('http');
+const express = require("express")
+const app = express();
 
-http.createServer(function(req,res) {
-	res.write(`I'm alive`);
-	res.end();
-}).listen();
+app.get("/", (req, res) => {
+res.send("ONLINE")
+});
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+console.log(`Your app is listening on port ${port}`);
+})
+
 
 const discord = require("discord.js");
 const bot = new discord.Client({ intents: 32767, ws: { properties: { $browser: "Discord Android" } }});
@@ -20,7 +25,7 @@ const Deezer = require("erela.js-deezer");
 const clientID = "ea41a85d7f444e25b83942adb2dfba70";
 const clientSecret = "1b8016b912d64aee80b1980ae0ada45c";
 const ascii = require("ascii-table");
-require("./structures/lavaplayer");
+require("./structures/MusicPlayer");
 
 bot.commands = new discord.Collection();
 bot.slashCommands = new discord.Collection();
@@ -31,7 +36,7 @@ bot.prefix = prefix;
 bot.devs = owner;
 bot.utils = new Util(bot);
 bot.snek = require("axios");
-bot.database = new Database(`mongodb+srv://aquadb:aquadb557@aqua1.3zpil.mongodb.net/Aqua?retryWrites=true&w=majority`);
+bot.database = new Database(`mongodb://asuka:asukadb@de1.sneakyhub.com:30133/asuka`);
 bot.music = new Manager({
     nodes,
     defaultSearchPlatform: 'youtube music',

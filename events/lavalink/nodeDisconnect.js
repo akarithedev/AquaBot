@@ -1,5 +1,5 @@
 const discord = require("discord.js")
 
 module.exports = async(bot, node) => {
-    console.log(`${node.options.identifier} node is now disconnected `)
+    console.log(`Lost connection with music node: ${node.options.identifier}`)
 }
