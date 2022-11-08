@@ -20,7 +20,7 @@ module.exports = {
             .setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
             return message.reply({embeds: [embed]})
         }
-        const target = message.mentions.users.first() || await bot.users.fetch(args[0])
+        const target = message.mentions.users.first() || await bot.users.cache.get(args[0])
         let reason = args.slice(2).join(" ");
         let time = args[1];
         if(!target) {

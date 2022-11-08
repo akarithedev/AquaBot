@@ -7,7 +7,7 @@ const ascii = require("ascii-table");
 let table = new ascii("");
 table.setHeading("Event", "Status");
 
-module.exports = (client) => {
+module.exports = (bot) => {
 
   const events = readdirSync(`./events/discord/`).filter(file => file.endsWith(".js"));
 
@@ -22,8 +22,8 @@ module.exports = (client) => {
     }
 
     pull.event = pull.event || file.replace(".js", "")
-    client.events.set(pull.event, pull)
-    client.on(pull.event, pull.run.bind(null, client))
+    bot.events.set(pull.event, pull)
+    bot.on(pull.event, pull.run.bind(null, bot))
     
     table.addRow(file, '✅ | Loaded');
 

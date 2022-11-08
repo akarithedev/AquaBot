@@ -25,8 +25,9 @@ module.exports = {
                 guild: message.guild.id,
                 voiceChannel: message.member.voice.channelId,
                 textChannel: message.channel.id,
-                volume: 50,
-                autoplay: null
+                volume: 100,
+                autoplay: null,
+                selfDeafen: true
             });
 
             if (player.voiceChannel !== voiceChannel.id) {

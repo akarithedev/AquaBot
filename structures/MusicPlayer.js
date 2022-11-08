@@ -8,11 +8,11 @@ module.exports = Structure.extend('Player', Player => {
 			this.pitch = 1;
 			this.rate = 1;
       this._8d = false;
-			this.nightcore = false;
-			this.vaporwave = false;
-			this.bassboost = false;
-			this.distortion = false;
-		    this.vibrato = false;
+			this._nightcore = false;
+			this._vaporwave = false;
+			this._bassboost = false;
+			this._distortion = false;
+		    this._vibrato = false;
 		  
 		}
 
@@ -54,15 +54,15 @@ module.exports = Structure.extend('Player', Player => {
 			return this;
 		}
 
-		setNightcore(nighcore) {
-			if (typeof nighcore !== 'boolean') {throw new RangeError('Player#setNighcore() Nightcore can only be "true" or "false".');}
+		setNightcore(value) {
+			if (typeof value !== 'boolean') {throw new RangeError('Player#setNighcore() Nightcore can only be "true" or "false".');}
 
-			this.nightcore = nighcore;
-			if(nighcore) {
-				this.bassboost = false;
-				this.distortion = false;
-				this.vaporwave = false;
-				this.vibrato = false;
+			this._nightcore = value;
+			if(this._nighcore) {
+				this._bassboost = false;
+				this._distortion = false;
+				this._vaporwave = false;
+				this._vibrato = false;
 				this.setVibrato(false)
 				this.setVaporwave(false);
 				this.setBassboost(false);
@@ -74,16 +74,16 @@ module.exports = Structure.extend('Player', Player => {
 			}
 			return this;
 		}
-		setVibrato(vibrato) {
-			if (typeof vibrato !== 'boolean') {throw new RangeError('Player#setVibrato() Vibrato can only be "true" or "false".');}
+		setVibrato(value) {
+			if (typeof value !== 'boolean') {throw new RangeError('Player#setVibrato() Vibrato can only be "true" or "false".');}
 
-			this.vibrato = vibrato;
+			this._vibrato = value;
 
-			if(vibrato) {
-				this.nightcore = false;
-				this.bassboost = false;
-				this.distortion = false;
-				this.vaporwave = false;
+			if(this._vibrato) {
+				this._nightcore = false;
+				this._bassboost = false;
+				this._distortion = false;
+				this._vaporwave = false;
 				this.setBassboost(false);
 				this.setNightcore(false);
 				this.setVaporwave(false);
@@ -103,15 +103,15 @@ module.exports = Structure.extend('Player', Player => {
 		}
 		return this;
 	}
-		setVaporwave(vaporwave) {
-			if (typeof vaporwave !== 'boolean') {throw new RangeError('Player#setVaporwave() Vaporwave can only be "true" or "false".');}
+		setVaporwave(value) {
+			if (typeof value !== 'boolean') {throw new RangeError('Player#setVaporwave() Vaporwave can only be "true" or "false".');}
 
-			this.vaporwave = vaporwave;
-			if(vaporwave) {
-				this.nightcore = false;
-				this.bassboost = false;
-				this.distortion = false;
-				this.vibrato = false;
+			this._vaporwave = value;
+			if(this._vaporwave) {
+				this._nightcore = false;
+				this._bassboost = false;
+				this._distortion = false;
+				this._vibrato = false;
 				this.setBassboost(false);
 				this.setNightcore(false);
 				this.setDistortion(false);
@@ -123,15 +123,15 @@ module.exports = Structure.extend('Player', Player => {
 			return this;
 		}
 
-		setDistortion(distortion) {
-			if (typeof distortion !== 'boolean') {throw new RangeError('Player#setDistortion() Distortion can only be "true" or "false"');}
+		setDistortion(value) {
+			if (typeof value !== 'boolean') {throw new RangeError('Player#setDistortion() Distortion can only be "true" or "false"');}
 
-			this.distortion = distortion;
-			if(distortion) {
-				this.nightcore = false;
-				this.vaporwave = false;
-				this.bassboost = false;
-				this.vibrato = false;
+			this._distortion = value;
+			if(this._distortion) {
+				this._nightcore = false;
+				this._vaporwave = false;
+				this._bassboost = false;
+				this._vibrato = false;
 				this.setBassboost(false);
 				this.setNightcore(false);
 				this.setVaporwave(false);
@@ -143,14 +143,14 @@ module.exports = Structure.extend('Player', Player => {
 			return this;
 		}
 
-		setBassboost(bassboost) {
-			if (typeof bassboost !== 'boolean') {throw new RangeError('Player#setBassboost() Bassboost can only be "true" or "false".');}
+		setBassboost(value) {
+			if (typeof value !== 'boolean') {throw new RangeError('Player#setBassboost() Bassboost can only be "true" or "false".');}
 
-			this.bassboost = bassboost;
-			if(bassboost) {
-				this.nightcore = false;
-				this.vaporwave = false;
-				this.vibrato = false;
+			this._bassboost = value;
+			if(this._bassboost) {
+				this._nightcore = false;
+				this._vaporwave = false;
+				this._vibrato = false;
 				this.setVaporwave(false);
 				this.setNightcore(false);
 				this.setVibrato(false);
@@ -162,7 +162,7 @@ module.exports = Structure.extend('Player', Player => {
 		}
 
 		setDistort(value) {
-			this.value = value || this.value;
+			this._distortion = value || this._distortion;
 
 			this.node.send({
 				op: 'filters',
@@ -231,11 +231,12 @@ module.exports = Structure.extend('Player', Player => {
 			this.speed = 1;
 			this.pitch = 1;
 			this.rate = 1;
-			this.bassboost = false;
-			this.nightcore = false;
-			this.vaporwave = false;
-			this.distortion = false;
-			this.vibrato = false;
+			this._bassboost = false;
+			this._nightcore = false;
+			this._vaporwave = false;
+			this._distortion = false;
+			this._vibrato = false;
+			this._8d = false;
 			this.clearEQ();
 
 			this.node.send({

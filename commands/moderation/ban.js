@@ -9,9 +9,9 @@ module.exports = {
     ownerOnly: false,
     usage: "ban <user> <reason>",
     run: async(bot, message, args) => {
-        let target = message.mentions.users.first() || await bot.users.fetch(args[0])
+        let target = message.mentions.users.first() || await bot.users.cache.get(args[0]);
         let reason = args.slice(1).join("");
-
+ 
         if(!message.member.permissions.has(permission)) {
             embed.setTitle("Missing Permissions")
             embed.setColor("RED")
@@ -32,7 +32,7 @@ module.exports = {
 
         if(target.id === message.author.id) {
             let embed = new discord.MessageEmbed()
-            .setDescription(`${bot.emoji.error} Haha funny, you cannot ban yourself :>`)
+            .setDescription(`${bot.emoji.error} You cannot ban yourself.`)
             .setColor("RED")
             .setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
             return message.reply({embeds: [embed]})
@@ -45,7 +45,7 @@ module.exports = {
        
         if(!targetUser.bannable) {
             embed.setColor("RED")
-            embed.setDescription(`${bot.emoji.error} You cannot ban this user.`)
+            embed.setDescription(`${bot.emoji.error} This user cannot be banned.`)
             embed.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
 
             return message.reply({embeds: [embed]})

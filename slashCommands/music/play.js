@@ -39,6 +39,7 @@ module.exports = {
     }
 
     let songs;
+    await interaction.deferReply();
     try {
       songs = args.getString("song");
       let res = await bot.music.search(songs, member.user);
@@ -47,7 +48,7 @@ module.exports = {
         guild: interaction.guild.id,
         voiceChannel: interaction.member.voice.channelId,
         textChannel: interaction.channel.id,
-        volume: 50,
+        volume: 100,
         autoplay: null,
         selfDeafen: true,
       });
@@ -66,7 +67,6 @@ module.exports = {
         );
         return interaction.reply({ embeds: [embed] });
       }
-      await interaction.deferReply();
       if (player.state !== "CONNECTED") player.connect();
 
       if (res.loadType === "NO_MATCHES") {

@@ -47,12 +47,11 @@ module.exports = {
     try {
       message.guild.members.unban(targetUser.user.id)
     } catch(err) {
-        embed.setDescription(`${bot.emoji.error} The user couldn't be found`)
+        embed.setDescription(`${bot.emoji.error} The member you're trying to unban it is already unbanned`)
         embed.setColor("RED")
         embed.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
        return message.reply({embeds: [embed]})
     }
-    embed.setAuthor("User Unbanned", targetUser.user.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
             embed.setDescription(`${bot.emoji.success} The user \`${targetUser.user.tag}\` has been successfully unbanned.`)
             embed.setColor("BLUE")
             embed.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))

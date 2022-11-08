@@ -1,17 +1,16 @@
 const express = require("express")
-const app = express();
+const app = new express();
+
+app.listen(3340, () => {
+  console.log("App is listening on port 3340")
+});
 
 app.get("/", (req, res) => {
-res.send("ONLINE")
-});
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-console.log(`Your app is listening on port ${port}`);
+  res.status(200).send("click on this link to see how i made the bot: https://www.youtube.com/watch?v=dQw4w9WgXcQ")
 })
 
-
 const discord = require("discord.js");
-const bot = new discord.Client({ intents: 32767, ws: { properties: { $browser: "Discord Android" } }});
+const bot = new discord.Client({ intents: 32767});
 const fs = require("fs");
 const { prefix, owner } = require("./config.json");
 const Util = require("./AquaUtil.js");
@@ -30,13 +29,13 @@ require("./structures/MusicPlayer");
 bot.commands = new discord.Collection();
 bot.slashCommands = new discord.Collection();
 bot.aliases = new discord.Collection();
-bot.categories = fs.readdirSync("./commands");
+bot.categories = fs.readdirSync("./commands")
 bot.slashCategories = fs.readdirSync("./slashCommands")
 bot.prefix = prefix;
 bot.devs = owner;
 bot.utils = new Util(bot);
 bot.snek = require("axios");
-bot.database = new Database(`mongodb://asuka:asukadb@de1.sneakyhub.com:30133/asuka`);
+bot.database = new Database("mongodb+srv://aqua:adelanreade889@aqua.43iyquf.mongodb.net/aquadb");
 bot.music = new Manager({
     nodes,
     defaultSearchPlatform: 'youtube music',
@@ -65,7 +64,7 @@ config({
 });
 
 bot.database.on("ready", () => {
-    console.log("Successfully connected to database")
+     console.log("Successfully connected to database")
 });
 bot.database.on("error", () => {
     console.log(`Couldn't connect to database`)

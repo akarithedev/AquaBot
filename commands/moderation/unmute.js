@@ -17,7 +17,7 @@ module.exports = {
             .setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))
             return message.reply({embeds: [embed]})
         }
-        const target = message.mentions.users.first() || await bot.users.fetch(args[0])
+        const target = message.mentions.users.first() || await bot.users.cache.get(args[0])
         if(!target) {
             embed.setColor("RED")
             embed.setDescription(`${bot.emoji.error} Please mention or provide an user id to unmute.`)

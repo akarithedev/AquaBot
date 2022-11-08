@@ -15,9 +15,8 @@ module.exports = {
         let stageChannels = bot.channels.cache.filter(c => c.type === "GUILD_STAGE_VOICE").size;
         let users = bot.users.cache.filter(u => !u.bot).size;
         let guilds = bot.guilds.cache.size;
-      let developers = bot.devs.map(a => bot.users.cache.get(a))
+        let developers = bot.devs.map(a => bot.users.cache.get(a))
         let array = [
-            `**Bot Developers**: \`${developers.map(u => u.tag).join(", ")}\``,
             `**Bot Creation**: \`${bot.user.createdAt.toUTCString()}\``,
             `**Channels**:`,
             `Text Channels: \`${textChannels}\``,

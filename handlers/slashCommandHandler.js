@@ -17,10 +17,10 @@ module.exports = {
 				data.default_permission = false;
 			}
 			guilds.forEach(async guild => {
-				let cmd = await guild.commands.create(data); // cand se creeaza comanda, va returna datele de la comanda.
+				let cmd = await guild.commands.create(data);
 				if(data.default_permission) {
 					guild.commands.permissions.set({
-						command: cmd.id, // .id - id-ul de la comanda
+						command: cmd.id,
 						permissions: bot.devs.map(a => {
 							return {
 								id: a,
@@ -29,7 +29,7 @@ module.exports = {
 							}
 						})
 					});
-				}
+				};
 			})
 		})
 	}

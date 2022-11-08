@@ -27,19 +27,20 @@ module.exports = {
         let member = await guild.members.cache.get(interaction.user.id) || await guild.members.fetch(interaction.user.id);
         let artist = args.getString("artist")
         let track = args.getString("song")
+        await interaction.deferReply();
         let lyrics = await lyricsFinder(artist, track) || "No lyrics found";
        let embed1 = new discord.MessageEmbed()
 	        .setDescription(`${bot.emoji.searching} Searching lyrics for \`${track}\``)
 	        .setColor("BLUE")
 	        .setFooter(`Requested by ${interaction.user.tag}`, interaction.user.displayAvatarURL({ format: "png", dynamic: true, size: 2048 }))
-        interaction.reply({embeds: [embed1]})
+      await interaction.followUp({embeds: [embed1]});
         
         setTimeout(async() => {
 					let lyricembed = new discord.MessageEmbed()
 						.setTitle(`${bot.utils.capitalise(track)} - Lyrics`)
 						.setDescription(lyrics.length > 1900 ? `\`\`\`${lyrics.substr(0, 1900)}...\`\`\`` : `\`\`\`${lyrics}\`\`\``)
 						.setColor("BLUE")
-					return interaction.editReply({embeds: [lyricembed]})
+					return interaction.editReply({embeds: [lyricembed]});
         }, 5000)
 
     }

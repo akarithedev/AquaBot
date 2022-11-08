@@ -33,7 +33,7 @@ module.exports = {
             return message.reply({ embeds: [embed] })
         }
         if(!filter) {
-            embed.setDescription(`${bot.emoji.error} Please provide a filter. Available filters: \`nightcore, vaporwave, bassboost, distort, 8D, vibrato\``)
+            embed.setDescription(`${bot.emoji.error} Please provide a filter. Available filters: \`nightcore, vaporwave, bassboost, distortion, 8D, vibrato\``)
             embed.setColor("BLUE")
             embed.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({ format: "png", dynamic: true, size: 2048 }))
             return message.reply({ embeds: [embed] })
@@ -165,7 +165,7 @@ module.exports = {
                 embed.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({ format: "png", dynamic: true, size: 2048 }))
                 return message.reply({embeds: [embed]})
             }
-        } else if(filter === "distort") {
+        } else if(filter === "distortion") {
             if(!args[1]) {
                 embed.setDescription(`${bot.emoji.error} Please provide a value (on/off)`)
                 embed.setColor("BLUE")
@@ -173,30 +173,30 @@ module.exports = {
                 return message.reply({ embeds: [embed] })
             }
             if(args[1] === "on") {
-                if(!filters.includes("distort")) {
-                    bot.database.set(`filters_${message.guild.id}`, [...filters, 'distort']);
+                if(!filters.includes("distortion")) {
+                    bot.database.set(`filters_${message.guild.id}`, [...filters, 'distortion']);
                     player.setDistortion(true);
-                    embed.setDescription(`${bot.emoji.success} Successfully applied the distort filter`)
+                    embed.setDescription(`${bot.emoji.success} Successfully applied the distortion filter`)
                     embed.setColor("BLUE")
                     embed.setFooter("It can take up to 15 seconds to hear the effect")
                     return message.reply({embeds: [embed]})
                 } else {
-                    embed.setDescription(`${bot.emoji.error} The distort filter is already applied`)
+                    embed.setDescription(`${bot.emoji.error} The distortion filter is already applied`)
                     embed.setColor("BLUE")
                     embed.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({ format: "png", dynamic: true, size: 2048 }))
                     return message.reply({embeds: [embed]})
                 }
             } else 
             if(args[1] === "off") {
-                if(filters.includes("distort")) {
-                    bot.database.set(`filters_${message.guild.id}`, filters.filter(a => a != 'distort'));
+                if(filters.includes("distortion")) {
+                    bot.database.set(`filters_${message.guild.id}`, filters.filter(a => a != 'distortion'));
                     player.setDistortion(false);
-                    embed.setDescription(`${bot.emoji.success} Successfully removed the distort filter`)
+                    embed.setDescription(`${bot.emoji.success} Successfully removed the distortion filter`)
                     embed.setColor("BLUE")
                     embed.setFooter("It can take up to 15 seconds to clear the effect")
                     return message.reply({embeds: [embed]})
                 } else {
-                    embed.setDescription(`${bot.emoji.error} The distort filter is not applied.`)
+                    embed.setDescription(`${bot.emoji.error} The distortion filter is not applied.`)
                     embed.setColor("BLUE")
                     embed.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({ format: "png", dynamic: true, size: 2048 }))
                     return message.reply({embeds: [embed]})
