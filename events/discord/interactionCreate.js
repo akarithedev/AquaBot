@@ -4,6 +4,16 @@ module.exports.run = async(bot, interaction) => {
     
 	let command = bot.slashCommands.get(interaction.commandName);
 	if(!command) return;
+	let blacklist = await bot.database.get(`blacklist_${interaction.user.id}`)
+	if(blacklist === "Yes") {
+		const embed = new discord.MessageEmbed()
+		.setTitle("Blacklisted")
+		.setDescription(`${bot.emoji.error} I am sorry but you are blacklisted.`)
+		.setColor("RED")
+		return interaction.reply({ embeds: [embed], ephemeral: true });
+	  } else {
+		console.log("")
+	  }
 	if(command.ownerOnly) {
 		if (!bot.devs.includes(interaction.user.id)) {
             const embed1 = new discord.MessageEmbed()

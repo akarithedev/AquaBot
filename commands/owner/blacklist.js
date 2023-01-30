@@ -9,7 +9,7 @@ module.exports = {
     ownerOnly: true,
     run: async(bot, message, args) => {
         let option = args[0];
-        let target = await bot.users.cache.get(args[1])
+        let target = await message.mentions.users.first() || await bot.users.cache.get(args[1])
         if(!option) {
           let nooption = new discord.MessageEmbed()
           .setDescription(bot.emoji.error + " Please provide an option")
