@@ -4,6 +4,7 @@
   "description": "A multi purpose bot",
   "main": "AquaClient.js",
   "scripts": {
+    "test" "echo test"
     "start": "nodemon AquaClient.js"
   },
   "author": "NightQueen",
