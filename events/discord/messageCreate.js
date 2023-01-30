@@ -8,11 +8,19 @@ module.exports.run = async(bot, message) => {
     if (!message.member) message.member = await message.guild.fetchMember(message);
     const args = message.content.slice(bot.prefix.length).trim().split(/ +/g);
     const cmd = args.shift().toLowerCase();
-
+    let blacklist = (await bot.database.get(`blacklist_${message.author.id}`)) ?? [];
     if (cmd.length === 0) return;
 
     let command = bot.commands.get(cmd) || bot.commands.get(bot.aliases.get(cmd));
-
+    if(blacklist === "Yes") {
+      const embed = new discord.MessageEmbed()
+      .setTitle("Blacklisted")
+      .setDescription(`${bot.emoji.error} I am sorry but you are blacklisted.`)
+      .setColor("RED")
+      return message.reply({ embeds: [embed] });
+    } else {
+      console.log("")
+    }
     if (!command) {
         const embed = new discord.MessageEmbed()
         .setTitle("Command Error")

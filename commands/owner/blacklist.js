@@ -24,14 +24,21 @@ module.exports = {
                 .setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({ format: "png", dynamic: true, size: 2048 }))
                 return message.reply({embeds: [nomember]})
             } else {
-                let blacklist = (await bot.database.get(`blacklist_${target.id}`)) ?? [];
-                if(!blacklist.includes(`${target.id}`)) {
-                    await bot.database.set(`blacklist_${target.id}`, [...blacklist, target.id])
+                let blacklist = await bot.database.fetch(`blacklist_${target.id}`)
+                if(blacklist === "No") {
+                    await bot.database.set(`blacklist_${target.id}`, "Yes")
                     let embed = new discord.MessageEmbed()
                 .setDescription(`${bot.emoji.success} User has been successfully added to black list. Use \`${bot.prefix}blacklist remove\` to remove them if you want to`)
                 .setColor("BLUE")
                 .setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({ format: "png", dynamic: true, size: 2048 }))
                 return message.reply({embeds: [embed]})
+            } else if(blacklist === null) {
+                await bot.database.set(`blacklist_${target.id}`, "Yes")
+                let embed = new discord.MessageEmbed()
+            .setDescription(`${bot.emoji.success} User has been successfully added to black list. Use \`${bot.prefix}blacklist remove\` to remove them if you want to`)
+            .setColor("BLUE")
+            .setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({ format: "png", dynamic: true, size: 2048 }))
+            return message.reply({embeds: [embed]})
             } else {
                 let embed = new discord.MessageEmbed()
                 .setDescription(`${bot.emoji.error} This user is already in the database`)
@@ -48,9 +55,9 @@ module.exports = {
                 .setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL({ format: "png", dynamic: true, size: 2048 }))
                 return message.reply({embeds: [nomember]})
             } else {
-                let blacklist = (await bot.database.get(`blacklist_${target.id}`)) ?? [];
-                if(blacklist.includes(`${target.id}`)) {
-                    await bot.database.set(`blacklist_${target.id}`, blacklist.filter(a => a != `${target.id}`));
+                let blacklist = await bot.database.fetch(`blacklist_${target.id}`)
+                if(blacklist === "Yes") {
+                    await bot.database.set(`blacklist_${target.id}`,"No");
                     let embed = new discord.MessageEmbed()
                 .setDescription(`${bot.emoji.success} User has been successfully removed from black list. Use \`${bot.prefix}blacklist add\` to add them back if you want to`)
                 .setColor("BLUE")
