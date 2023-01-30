@@ -1,14 +1,3 @@
-const express = require("express")
-const app = new express();
-
-app.listen(3340, () => {
-  console.log("App is listening on port 3340")
-});
-
-app.get("/", (req, res) => {
-  res.status(200).send("click on this link to see how i made the bot: https://www.youtube.com/watch?v=dQw4w9WgXcQ")
-})
-
 const discord = require("discord.js");
 const bot = new discord.Client({ intents: 32767});
 const fs = require("fs");

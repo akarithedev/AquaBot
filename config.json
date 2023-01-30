@@ -3,7 +3,6 @@
   "owner": ["735205484860276787", "872945920365432883"],
   "nodes": [
 	{ "host": "lavalink1.asukathebest.repl.co", "port": 443, "password": "youshallnotpass", "identifier": "AquaMusic1", "secure": true},
-    { "host": "lava.link", "port": 80, "password": "youshallnotpass", "identifier": "AquaMusic2", "secure": false },
-	{ "host": "57.128.136.143", "port": 10138, "password": "youshallnotpass", "identifier": "AquaMusic3", "secure": false }
-  ]
+    { "host": "lava.link", "port": 80, "password": "youshallnotpass", "identifier": "AquaMusic2", "secure": false }
+	]
 }
