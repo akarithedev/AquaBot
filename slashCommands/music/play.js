@@ -4,7 +4,7 @@ const embed = new discord.MessageEmbed();
 module.exports = {
   name: "play",
   description:
-    "Play a song or a playlist from youtube/spotify/soundcloud/deezer/appplemusic",
+    "Play a song or a playlist from youtube/spotify/soundcloud",
   category: "music",
   ownerOnly: false,
   nsfwOnly: false,
@@ -171,8 +171,6 @@ function getType(query) {
     return "YouTube";
   if (query.includes("spotify.com")) return "Spotify";
   if (query.includes("soundcloud.com")) return "SoundCloud";
-  if (query.includes("apple.com")) return "AppleMusic";
-  if (query.includes("deezer.com")) return "Deezer";
   return "Query";
 }
 
@@ -183,9 +181,4 @@ function getImage(query) {
     return "https://imgs.search.brave.com/iU0U9bV0_moWfz1-uErg-TNbeENmtyYTXoXIcfZ8KMk/rs:fit:1024:1024:1/g:ce/aHR0cHM6Ly9ham91/cm5leWludG9zb3Vu/ZC5kZS93cC1jb250/ZW50L3VwbG9hZHMv/MjAxOS8wMi9zcG90/aWZ5X2xvZ28ucG5n";
   if (query.includes("soundcloud.com"))
     return "https://imgs.search.brave.com/9rD65Zdo9HG1Vb-Yuwj1XvOI2aQSWEb_rAziPP4CNpY/rs:fit:855:855:1/g:ce/aHR0cHM6Ly9wbmdt/aW5kLmNvbS93cC1j/b250ZW50L3VwbG9h/ZHMvMjAxOS8wOC9T/b3VuZGNsb3VkLUxv/Z28tUG5nLVRyYW5z/cGFyZW50LUJhY2tn/cm91bmQucG5n";
-  if (query.includes("apple.com"))
-    return "https://imgs.search.brave.com/9N0Cx8Fp-42sG2FpGd6sDr7zXFsxx5Oy4T0thmWPDFo/rs:fit:920:768:1/g:ce/aHR0cHM6Ly9jbGlw/YXJ0Y3JhZnQuY29t/L2ltYWdlcy9hcHBs/ZS1tdXNpYy1sb2dv/LWNsaXBhcnQtc3Zn/LTYucG5n";
-  if (query.includes("deezer.com"))
-    return "https://imgs.search.brave.com/FpCqroKYSVmiCxSpsiecHBQyTTGyKBNfVpR0xS-naEA/rs:fit:720:720:1/g:ce/aHR0cDovL2ltZy50/YWxrYW5kcm9pZC5j/b20vdXBsb2Fkcy8y/MDE0LzA2L0RlZXpl/ci1sb2dvLmpwZw";
-  return "https://imgs.search.brave.com/7jsMhMvKgy6iOxIH1TJEcPROR1N8OMrhmb8pP7fjTqc/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly9wbmdp/bWcuY29tL3VwbG9h/ZHMveW91dHViZS95/b3V0dWJlX1BORzEw/MjM0OS5wbmc";
 }

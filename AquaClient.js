@@ -7,9 +7,7 @@ const { Manager } = require("erela.js");
 const { nodes } = require("./config.json");
 const { Database } = require("quickmongo");
 const { config } = require("dotenv");
-const Spotify = require("erela.js-spotify");
-const Apple = require("erela.js-apple");
-const Deezer = require("erela.js-deezer");
+const Spotify = require("better-erela.js-spotify").default;;
 const clientID = "ea41a85d7f444e25b83942adb2dfba70";
 const clientSecret = "1b8016b912d64aee80b1980ae0ada45c";
 const ascii = require("ascii-table");
@@ -34,12 +32,7 @@ bot.music = new Manager({
         if (guild) guild.shard.send(payload)
     },
     plugins: [
-    new Spotify({
-      clientID,
-      clientSecret
-    }),
-    new Apple(),
-    new Deezer()
+    new Spotify()
   ]
 });
 bot.events = new discord.Collection();
